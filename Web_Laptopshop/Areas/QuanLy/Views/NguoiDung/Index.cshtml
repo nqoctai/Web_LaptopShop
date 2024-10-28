@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+@using Web_Laptopshop.Models
+@model List<NguoiDung>
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-center display-4 font-weight-bold text-primary">
+                Manage Users
+            </h1>
+            <ol class="breadcrumb mb-4 bg-light rounded">
+                <li class="breadcrumb-item">
+                    <a href="/admin/admin.html"
+                       class="text-decoration-none text-primary">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active text-secondary"
+                    aria-current="page">
+                    Users
+                </li>
+            </ol>
+
+            <div class="mt-5">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="text-secondary">
+                                User Table
+                            </h3>
+                            <form action="/QuanLy/NguoiDung/TimKiemTheoEmail" method="post">
+                                <div class="input-group"
+                                     style="width: 300px">
+                                    <input type="text"
+                                           class="form-control"
+                                           name="txtSearch"
+                                           placeholder="Search by email..."
+                                           aria-label="Search by email" />
+                                    <button class="btn btn-primary"
+                                            type="submit">
+                                        <ion-icon name="search-outline"></ion-icon>
+                                    </button>
+                                </div>
+                            </form>
+                            <a href="/QuanLy/NguoiDung/ThemNguoiDung"
+                               class="btn btn-primary rounded-pill">
+                                <i class="bi bi-plus-circle"></i>
+                                Create a User
+                            </a>
+                        </div>
+
+                        <hr />
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Email</th>
+                                        <th>Tên đăng nhập</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (NguoiDung nd in Model)
+                                    {
+                                        <tr>
+                                            <th>@nd.Id</th>
+                                            <td>@nd.Email</td>
+                                            <td>@nd.TaiKhoan</td>
+                                            <td>
+                                                <a href="/QuanLy/NguoiDung/XemNguoiDung/?id=@nd.Id"
+                                                   class="btn btn-success btn-sm">
+                                                    <ion-icon name="eye-outline"></ion-icon>
+                                                </a>
+                                                <a href="/QuanLy/NguoiDung/ChinhSuaNguoiDung/?id=@nd.Id"
+                                                   class="btn btn-warning btn-sm mx-2">
+                                                    <ion-icon name="pencil-outline"></ion-icon>
+                                                </a>
+                                                <a href="/QuanLy/NguoiDung/XoaNguoiDung/?id=@nd.Id"
+                                                   class="btn btn-danger btn-sm"
+                                                   onclick="confirmDelete(@nd.Id)">
+                                                    <ion-icon name="trash-outline"></ion-icon>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy;</div>
+                <div>
+                    <a href="#" target="_blank">Website</a>
+                    &middot;
+                    <a href="#" target="_blank">Youtube channel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

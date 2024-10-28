@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
+<style>
+    body {
+        background: linear-gradient(to right, #acf8ea, #a8e063);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Arial", sans-serif;
+    }
+
+    .form-container {
+        width: 500px;
+        padding: 3rem;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+        font-weight: bold;
+        color: #2e7d32;
+    }
+
+    .form-label {
+        color: #2e7d32;
+    }
+
+    .input-group-text {
+        background-color: #2e7d32;
+        color: white;
+    }
+
+    .form-control {
+        border-radius: 0.5rem;
+    }
+
+    .btn-success {
+        background: linear-gradient(to right, #2e7d32, #4caf50);
+        border: none;
+        padding: 0.75rem;
+        border-radius: 30px;
+        transition: background 0.4s ease;
+    }
+
+        .btn-success:hover {
+            background: linear-gradient(to right, #1b5e20, #2e7d32);
+        }
+
+    .form-container .text-center small a {
+        color: #2e7d32;
+        transition: color 0.3s ease;
+    }
+
+        .form-container .text-center small a:hover {
+            color: #1b5e20;
+        }
+</style>
+
+<body>
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

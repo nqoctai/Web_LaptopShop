@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Dashboard</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Thống kê</li>
+            </ol>
+
+            <div class="row">
+                <!-- Card for Users -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card text-white bg-info mb-4 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-users me-2"></i>Số
+                            lượng User (3)
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <a class="text-white small"
+                               href="showUser.html">View Details</a>
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card for Products -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card text-white bg-warning mb-4 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-box me-2"></i>Số lượng
+                            Product (10)
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <a class="text-white small"
+                               href="admin-showProduct.html">View Details</a>
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card for Orders -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="card text-white bg-success mb-4 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-shopping-cart me-2"></i>Số lượng Order (5)
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <a class="text-white small"
+                               href="showOrder.html">View Details</a>
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">
+                    Copyright &copy; 2024 Laptopshop
+                </div>
+                <div>
+                    <a href="#" class="link-primary">Website</a>
+                    &middot;
+                    <a href="#" class="link-primary">YouTube Channel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

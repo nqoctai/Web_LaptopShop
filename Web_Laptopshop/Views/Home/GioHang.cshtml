@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Web_Laptopshop.Models;
+@model GioHang
+
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="mb-3">
+            <div>
+                <nav aria-label="breadcrumb" class="col-12 mb-4">
+                    <ol class="breadcrumb bg-light p-3 rounded">
+                        <li class="breadcrumb-item">
+                            <a href="/" class="text-decoration-none">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active"
+                            aria-current="page">
+                            Chi tiết giỏ hàng
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-primary">
+                    <tr class="text-center">
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Giá cả</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                        <th scope="col">Xử lý</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(ChiTietGioHang ctgh in Model.lst)
+                    {
+                        <tr class="text-center">
+                        <th scope="row">
+                            <img src="~/Content/Upload/HinhAnh/@ctgh.AnhBia"
+                                 class="img-fluid rounded-circle shadow-sm"
+                                 style="width: 70px; height: 70px"
+                                 alt="Laptop Dell Inspiron 15" />
+                        </th>
+                        <td>
+                            <p class="mb-0">
+                                <a href="#"
+                                   target="_blank"
+                                   class="text-decoration-none text-primary fw-bold">@ctgh.TenSanPham</a>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="mb-0">@ctgh.DonGia đ</p>
+                        </td>
+                        <td>
+                            <div class="input-group justify-content-center"
+                                 style="max-width: 120px; margin: 0 auto">
+                                <button class="btn btn-outline-secondary btn-sm px-2"
+                                        type="button">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input type="text"
+                                       class="form-control form-control-sm text-center"
+                                       style="max-width: 50px"
+                                       value="@ctgh.SoLuong" />
+                                <button class="btn btn-outline-secondary btn-sm px-2"
+                                        type="button">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="mb-0">
+                                @ctgh.ThanhTien đ
+                            </p>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Order Information -->
+        <div class="mt-5">
+            <div class="bg-light shadow-sm rounded-3 p-4">
+                <h5 class="text-uppercase fw-bold mb-4 text-primary">
+                    Thông Tin <span class="fw-normal">Đơn Hàng</span>
+                </h5>
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                    <h6 class="mb-0 text-muted">Tạm tính:</h6>
+                    <p class="mb-0 fw-semibold fs-5">34,990,000 đ</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                    <h6 class="mb-0 text-muted">Phí vận chuyển:</h6>
+                    <p class="mb-0 fw-semibold fs-5">0 đ</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center py-3 mb-4 border-top border-bottom">
+                    <h5 class="mb-0">Tổng số tiền:</h5>
+                    <p class="mb-0 fw-bold text-danger fs-4">
+                        34,990,000 đ
+                    </p>
+                </div>
+                <a href="/Home/ThanhToan" class="text-decoration-none">
+                    <button class="btn btn-primary rounded-3 px-4 py-2 text-uppercase fw-bold"
+                            style="transition: opacity 0.3s, transform 0.2s"
+                            onmouseover="this.style.opacity='0.7';"
+                            onmouseout="this.style.opacity='1';">
+                        <i class="fas fa-check-circle"></i> Xác nhận
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

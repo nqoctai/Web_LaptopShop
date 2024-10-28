@@ -1,0 +1,41 @@
+﻿@model Web_Laptopshop.Models.SanPham
+
+@{
+    ViewBag.Title = "XoaSanPham";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Quản lý sản phẩm</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/QuanLy/TrangChu">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Sản phẩm</li>
+            </ol>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <h3>Delete the user with id=@Model.Id</h3>
+                        <hr />
+
+                        <div class="alert alert-danger">Bạn chắc chẵn muốn xóa sản phẩm @Model.TenSanPham</div>
+                    </div>
+                    <form method="post" action="/QuanLy/SanPham/XoaSanPham">
+                        <div class="mb-3" style="display: none;">
+                            <label class="form-label">Id:</label>
+                            <input value="@Model.Id" name="ID" type="text" class="form-control" path="id" />
+                        </div>
+                        <button class="btn btn-danger">Confirm</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+    <jsp:include page="../layout/footer.jsp" />
+</div>
+

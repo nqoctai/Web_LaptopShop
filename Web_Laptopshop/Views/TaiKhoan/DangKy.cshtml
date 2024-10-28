@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/LayoutLoginRegister.cshtml";
+}
+@model Web_Laptopshop.ViewModel.DangKyVM
+
+<div class="container">
+    <div class="form-container mx-auto">
+        <h2 class="text-center form-title mb-4">Đăng Ký Tài Khoản</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @using (Html.BeginForm("DangKy", "TaiKhoan", FormMethod.Post))
+        {
+            <div class="mb-4 input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-person"></i>
+                </span>
+                @Html.TextBoxFor(m => m.TenNguoiDung, new { @class = "form-control", placeholder = "Nhập tên người dùng" })
+                @Html.ValidationMessageFor(m => m.TenNguoiDung, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-4 input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-envelope"></i>
+                </span>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Nhập email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-4 input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-person"></i>
+                </span>
+                @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", placeholder = "Nhập họ và tên" })
+                @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-4 input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-lock"></i>
+                </span>
+                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+
+            </div>
+            <div>@Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })</div>
+
+            <div class="mb-4 input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-lock-fill"></i>
+                </span>
+                @Html.PasswordFor(m => m.XacNhanMatKhau, new { @class = "form-control", placeholder = "Xác nhận mật khẩu" })
+
+            </div>
+            <div>@Html.ValidationMessageFor(m => m.XacNhanMatKhau, "", new { @class = "text-danger" })</div>
+
+
+
+            <div class="mb-4 input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-person"></i>
+                </span>
+                @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
+                @Html.ValidationMessageFor(m => m.SoDienThoai, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+                Đăng Ký
+            </button>
+
+            <div class="text-center mt-4">
+                <small class="text-muted">
+                    Đã có tài khoản?
+                    <a href="@Url.Action("DangNhap", "TaiKhoan")" class="text-decoration-none">Đăng Nhập</a>
+                </small>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/styles.css" rel="stylesheet" />
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+            crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+          rel="stylesheet" />
+</head>
+<body>
+    <nav class="sb-topnav navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <!-- Navbar Brand -->
+        <a class="navbar-brand ps-3" href="/QuanLy/TrangChu">
+            <i class="fas fa-laptop me-2"></i>Laptopshop
+        </a>
+        <!-- Sidebar Toggle -->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4"
+                id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navbar Search -->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3">
+            <span class="text-white">Welcome, Admin</span>
+        </form>
+        <!-- Navbar Right -->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                   id="navbarDropdown"
+                   href="#"
+                   data-bs-toggle="dropdown">
+                    <i class="fas fa-user fa-fw"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                        <form method="post" action="/logout">
+                            <button class="dropdown-item">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="layoutSidenav">
+        <!-- Sidebar -->
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-light bg-white shadow-sm"
+                 id="sidenavAccordion"
+                 style="border-right: 2px solid #f1f1f1">
+                <div class="sb-sidenav-menu">
+                    <div class="nav flex-column">
+                        <!-- Sidebar Logo -->
+                        <div class="sb-sidenav-menu-heading text-center py-4">
+                            <h5 class="mt-3 text-dark font-weight-bold">
+                                Admin Panel
+                            </h5>
+                        </div>
+
+                        <!-- Sidebar Links -->
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2">
+                                <a class="nav-link text-dark d-flex align-items-center"
+                                   href="/QuanLy/TrangChu/Index">
+                                    <div class="sb-nav-link-icon me-3">
+                                        <i class="fas fa-tachometer-alt"
+                                           style="
+                                                 font-size: 1.2rem;
+                                                 color: #5a67d8;
+                                             "></i>
+                                    </div>
+                                    <span class="font-weight-bold">Trang chủ</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link text-dark d-flex align-items-center"
+                                   href="/QuanLy/NguoiDung">
+                                    <div class="sb-nav-link-icon me-3">
+                                        <i class="fas fa-user"
+                                           style="
+                                                 font-size: 1.2rem;
+                                                 color: #38b2ac;
+                                             "></i>
+                                    </div>
+                                    <span class="font-weight-bold">Người dùng</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link text-dark d-flex align-items-center"
+                                   href="/QuanLy/SanPham">
+                                    <div class="sb-nav-link-icon me-3">
+                                        <i class="fas fa-box"
+                                           style="
+                                                 font-size: 1.2rem;
+                                                 color: #ed8936;
+                                             "></i>
+                                    </div>
+                                    <span class="font-weight-bold">Sản phẩm</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link text-dark d-flex align-items-center"
+                                   href="/QuanLy/DonHang/BangDonHang">
+                                    <div class="sb-nav-link-icon me-3">
+                                        <i class="fas fa-shopping-cart"
+                                           style="
+                                                 font-size: 1.2rem;
+                                                 color: #e53e3e;
+                                             "></i>
+                                    </div>
+                                    <span class="font-weight-bold">Đơn hàng</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Sidebar Footer -->
+                <div class="sb-sidenav-footer bg-light text-dark-50 text-center py-4"
+                     style="border-top: 1px solid #e2e8f0">
+                    <small class="text-muted">Logged in as Admin</small>
+                </div>
+            </nav>
+        </div>
+        @RenderBody()
+
+
+        <script src="~/Content/js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+                crossorigin="anonymous"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
+        </script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <!-- jQuery và Popper.js -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</body>
+</html>

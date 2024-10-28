@@ -1,0 +1,108 @@
+﻿@model Web_Laptopshop.Models.NguoiDung
+
+@{
+    ViewBag.Title = "XemNguoiDung";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+<style>
+    .user-card {
+        border-radius: 10px;
+    }
+
+    .card-body h3 {
+        font-size: 1.5rem;
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+</style>
+
+<div id="layoutSidenav_content">
+    <main class="py-5">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="user-card card shadow-lg">
+                        <div class="row g-0">
+                            <!-- Image section -->
+                            <div class="col-md-4 text-center p-4 bg-light">
+                                <img src="~/Content/Upload/Avatar/@Model.HinhDaiDien"
+                                     alt="User Avatar"
+                                     class="img-fluid rounded-circle border"
+                                     style="
+                                                    width: 180px;
+                                                    height: 180px;
+                                                    object-fit: cover;
+                                                " />
+                            </div>
+                            <!-- User information section -->
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="text-primary mb-3">
+                                        Thông Tin Người Dùng
+                                    </h3>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <i class="bi bi-person me-2"></i>
+                                            <strong>ID:</strong>
+                                            <span id="userId">@Model.Id</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <i class="bi bi-file-person me-2"></i>
+                                            <strong>Tên đăng nhập:</strong>
+                                            <span id="userName">@Model.TaiKhoan</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <i class="bi bi-envelope me-2"></i>
+                                            <strong>Email:</strong>
+                                            <span id="userEmail">@Model.Email</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <i class="bi bi-file-person me-2"></i>
+                                            <strong>Họ tên:</strong>
+                                            <span id="userFullName">@Model.HoTen</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <i class="bi bi-shield-lock me-2"></i>
+                                            <strong>Vai trò:</strong>
+                                            <span id="userRole">@ViewBag.Role</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <i class="bi bi-telephone me-2"></i>
+                                            <strong>
+                                                Số điện
+                                                thoại:
+                                            </strong>
+                                            <span id="userPhone">@Model.SoDienThoai</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <i class="bi bi-geo-alt me-2"></i>
+                                            <strong>Địa chỉ:</strong>
+                                            <span id="userAddress">
+                                                @Model.DiaChi
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer text-end">
+                                    <a href="/QuanLy/NguoiDung/Index"
+                                       class="btn btn-primary">
+                                        <i class="bi bi-arrow-left me-2"></i>Quay lại
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "ThemNguoiDung";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-primary font-weight-bold">
+                Manage Users
+            </h1>
+            <ol class="breadcrumb mb-4 bg-light p-3 rounded">
+                <li class="breadcrumb-item">
+                    <a href="/QuanLy/TrangChu"
+                       class="text-decoration-none text-primary">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Users</li>
+            </ol>
+            <div class="card shadow-sm mt-5 p-4">
+                <div class="row">
+                    <div class="col-md-6 col-12 mx-auto">
+                        <h3 class="mb-4 text-secondary">
+                            Create a User
+                        </h3>
+                        <form method="post" action="/QuanLy/NguoiDung/ThemNguoiDung" class="row g-3" enctype="multipart/form-data">
+                            <!-- Email -->
+                            <div class="col-12 col-md-6">
+                                <label for="email"
+                                       class="form-label">Email:</label>
+                                <input type="email"
+                                       id="email"
+                                       class="form-control"
+                                       path="email"
+                                       placeholder="Enter email"
+                                       name="txtEmail"
+                                       required />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="username"
+                                       class="form-label">Tên đăng nhập:</label>
+                                <input type="text"
+                                       id="username"
+                                       class="form-control"
+                                       path="username"
+                                       name="txtTenDangNhap"
+                                       placeholder="Enter full name" />
+                            </div>
+                            <!-- Password -->
+                            <div class="col-12 col-md-6">
+                                <label for="password"
+                                       class="form-label">Mật khẩu:</label>
+                                <input type="password"
+                                       id="password"
+                                       class="form-control"
+                                       path="password"
+                                       placeholder="Enter password"
+                                       name="txtMatKhau"
+                                       required />
+                            </div>
+                            <!-- Phone number -->
+                            <div class="col-12 col-md-6">
+                                <label for="phone"
+                                       class="form-label">Số điện thoại:</label>
+                                <input type="text"
+                                       id="phone"
+                                       class="form-control"
+                                       path="phone"
+                                       name="txtSDT"
+                                       placeholder="Enter phone number" />
+                            </div>
+                            <!-- Full Name -->
+                            <div class="col-12 col-md-6">
+                                <label for="fullName"
+                                       class="form-label">Họ và tên:</label>
+                                <input type="text"
+                                       id="fullName"
+                                       class="form-control"
+                                       path="fullName"
+                                       name="txtHoVaTen"
+                                       placeholder="Enter full name" />
+                            </div>
+                            <!-- Address -->
+                            <div class="col-12">
+                                <label for="address"
+                                       class="form-label">Địa chỉ:</label>
+                                <input type="text"
+                                       id="address"
+                                       class="form-control"
+                                       path="address"
+                                       name="txtDiaChi"
+                                       placeholder="Enter address" />
+                            </div>
+
+                            <!-- Avatar -->
+                            <div class="col-12 col-md-6">
+                                <label for="avatarFile"
+                                       class="form-label">Avatar:</label>
+                                <input type="file"
+                                       id="avatarFile"
+                                       class="form-control"
+                                       accept=".png, .jpg, .jpeg"
+                                       name="avatarFile"
+                                       onchange="previewAvatar(event)" />
+                            </div>
+                            <!-- Avatar Preview -->
+                            <div class="col-12 text-center">
+                                <img id="avatarPreview"
+                                     style="
+                                                    max-height: 250px;
+                                                    display: none;
+                                                "
+                                     alt="avatar preview"
+                                     class="rounded-circle border mt-3" />
+                            </div>
+                            <!-- Submit button -->
+                            <div class="col-12">
+                                <button type="submit"
+                                        class="btn btn-primary w-100 py-2">
+                                    Create User
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Đoạn code này dùng để tải ảnh lên nha -->
+    <script>
+        function previewAvatar(event) {
+            const input = event.target;
+            const preview =
+                document.getElementById("avatarPreview");
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    //sự kiện khi load xong file ảnh
+                    preview.src = e.target.result; //gán đường dẫn ảnh cho thẻ img
+                    preview.style.display = "block"; //hiển thị ảnh
+                };
+                reader.readAsDataURL(input.files[0]); //đọc file ảnh dưới dạng URL
+            }
+        }
+    </script>
+
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted"></div>
+                <div>
+                    <a href="#" target="_blank">Website</a>
+                    &middot;
+                    <a href="#" target="_blank">Youtube channel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    function previewAvatar(event) {
+        const input = event.target;
+        const preview =
+            document.getElementById("avatarPreview");
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                //sự kiện khi load xong file ảnh
+                preview.src = e.target.result; //gán đường dẫn ảnh cho thẻ img
+                preview.style.display = "block"; //hiển thị ảnh
+            };
+            reader.readAsDataURL(input.files[0]); //đọc file ảnh dưới dạng URL
+        }
+    }
+</script>

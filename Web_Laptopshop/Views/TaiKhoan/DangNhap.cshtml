@@ -1,0 +1,48 @@
+﻿@model Web_Laptopshop.ViewModel.DangNhapVM
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/LayoutLoginRegister.cshtml";
+}
+
+<div class="container">
+    <div class="form-container mx-auto">
+        <h2 class="text-center form-title mb-4">Đăng Nhập</h2>
+
+        <!-- Form bắt đầu với Html.BeginForm -->
+        @using (Html.BeginForm("DangNhap", "TaiKhoan", FormMethod.Post))
+        {
+            <!-- Tên Người Dùng -->
+            <div class="mb-4 input-group">
+                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                @Html.TextBoxFor(m => m.TenNguoiDung, new { @class = "form-control", placeholder = "Nhập tên người dùng", required = "required" })
+                @Html.ValidationMessageFor(m => m.TenNguoiDung, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Mật Khẩu -->
+            <div class="mb-4 input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu", required = "required" })
+                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Nút Đăng Nhập -->
+            <button type="submit" class="btn btn-success w-100">
+                Đăng Nhập
+            </button>
+
+            <!-- Thông báo lỗi tóm tắt (nếu có) -->
+            <div class="col-md-12 mt-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Đăng ký nếu chưa có tài khoản -->
+            <div class="text-center mt-4">
+                <small class="text-muted">
+                    Chưa có tài khoản?
+                    <a href="@Url.Action("Register", "TaiKhoan")" class="text-decoration-none">Đăng Ký</a>
+                </small>
+            </div>
+        }
+    </div>
+</div>

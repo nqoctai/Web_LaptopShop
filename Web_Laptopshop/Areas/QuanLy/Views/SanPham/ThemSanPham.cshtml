@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "ThemSanPham";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-primary font-weight-bold">
+                Manage Products
+            </h1>
+            <ol class="breadcrumb mb-4 bg-light p-3 rounded">
+                <li class="breadcrumb-item">
+                    <a href="/QuanLy/TrangChu"
+                       class="text-decoration-none text-primary">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Products</li>
+            </ol>
+            <div class="card shadow-sm mt-5 p-4">
+                <div class="row">
+                    <div class="col-md-6 col-12 mx-auto">
+                        <h3 class="mb-4 text-secondary">
+                            Create a Product
+                        </h3>
+                        <form method="post" action="/QuanLy/SanPham/ThemSanPham"
+                              class="row g-3"
+                              enctype="multipart/form-data">
+                            <!-- Name -->
+                            <div class="col-12 col-md-6">
+                                <label for="name" class="form-label">Tên sản phẩm:</label>
+                                <input type="text"
+                                       id="name"
+                                       class="form-control"
+                                       path="name"
+                                       name="txtTen"
+                                       placeholder="Enter product name"
+                                       required />
+                            </div>
+                            <!-- Price -->
+                            <div class="col-12 col-md-6">
+                                <label for="price"
+                                       class="form-label">Giá:</label>
+                                <input type="number"
+                                       id="price"
+                                       class="form-control"
+                                       path="price"
+                                       name="txtGia"
+                                       placeholder="Enter product price"
+                                       required />
+                            </div>
+                            <!-- Detail Description -->
+                            <div class="col-12">
+                                <label for="detailDesc"
+                                       class="form-label">Mô tả chi tiết:</label>
+                                <textarea id="detailDesc"
+                                          class="form-control"
+                                          path="detailDesc"
+                                          name="txtMoTaChiTiet"
+                                          placeholder="Enter detailed description"
+                                          style="
+                                                    height: 150px;
+                                                    resize: none;
+                                                "></textarea>
+                            </div>
+                            <!-- Short Description -->
+                            <div class="col-12">
+                                <label for="shortDesc"
+                                       class="form-label">Tiêu đề:</label>
+                                <textarea id="shortDesc"
+                                          class="form-control"
+                                          path="shortDesc"
+                                          name="txtMoTaNgan"
+                                          placeholder="Enter short description"
+                                          style="
+                                                    height: 100px;
+                                                    resize: none;
+                                                "></textarea>
+                            </div>
+                            <!-- Quantity -->
+                            <div class="col-12">
+                                <label for="quantity"
+                                       class="form-label">Số lượng:</label>
+                                <input type="number"
+                                       id="quantity"
+                                       class="form-control"
+                                       path="quantity"
+                                       name="txtSoLuong"
+                                       placeholder="Enter quantity" />
+                            </div>
+                            <!-- Factory -->
+                            <div class="col-12 col-md-6">
+                                <label for="factory"
+                                       class="form-label">Thương hiệu:</label>
+                                <select id="factory"
+                                        class="form-select"
+                                        name="txtThuongHieu"
+                                        path="factory">
+                                    @foreach (var th in ViewBag.DanhSachThuongHieu)
+                                    {
+                                        <option value="@th.Id">
+                                            @th.TenThuongHieu
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="factory"
+                                       class="form-label">Loại Sản Phẩm</label>
+                                <select id="LoaiSanPham"
+                                        class="form-select"
+                                        name="txtLoaiSanPham"
+                                        path="LoaiSanPham">
+                                    @foreach (var lsp in ViewBag.DanhSachLoaiSP)
+                                    {
+                                        <option value="@lsp.Id">
+                                            @lsp.TenLoai
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="MucDich"
+                                       class="form-label">Mục đích sử dụng</label>
+                                <select id="MucDich"
+                                        class="form-select"
+                                        name="txtMucDich"
+                                        path="MucDich">
+                                    @foreach (var md in ViewBag.DanhSachPhanKhuc)
+                                    {
+                                        <option value="@md.Id">
+                                            @md.TenPhanKhuc
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="avatarFile"
+                                       class="form-label">Hình ảnh:</label>
+                                <input type="file"
+                                       id="avatarFile"
+                                       class="form-control"
+                                       accept=".png, .jpg, .jpeg"
+                                       name="hinhanhFile"
+                                       onchange="previewAvatar(event)" multiple/>
+                            </div>
+                            <!-- Image Preview -->
+                            <div class="col-12 text-center">
+                                <img id="avatarPreview"
+                                     style="
+                                                    max-height: 250px;
+                                                    display: none;
+                                                "
+                                     alt="avatar preview"
+                                     class="rounded-circle border mt-3" />
+                            </div>
+                            <!-- Submit Button -->
+                            <div class="col-12">
+                                <button type="submit"
+                                        class="btn btn-primary w-100 py-2">
+                                    Create Product
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Đoạn code này dùng để tải ảnh lên nha -->
+    <script>
+        function previewAvatar(event) {
+            const input = event.target;
+            const preview =
+                document.getElementById("avatarPreview");
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted"></div>
+                <div>
+                    <a href="#" target="_blank">Website</a>
+                    &middot;
+                    <a href="#" target="_blank">Youtube channel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

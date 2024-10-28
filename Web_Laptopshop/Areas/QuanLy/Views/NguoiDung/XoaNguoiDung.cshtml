@@ -1,0 +1,40 @@
+﻿@model Web_Laptopshop.Models.NguoiDung
+
+@{
+    ViewBag.Title = "XoaNguoiDung";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Manage Users</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item active">Users</li>
+            </ol>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <h3>Delete the user with id=@Model.Id</h3>
+                        <hr />
+
+                        <div class="alert alert-danger">Bạn có chắc chắn muốn xóa người dung @Model.Email</div>
+                    </div>
+                    <form method="post" action="/QuanLy/NguoiDung/XoaNguoiDung">
+                        <div class="mb-3" style="display: none;">
+                            <label class="form-label">Id:</label>
+                            <input value="@Model.Id" name="Id" type="text" class="form-control" path="id" />
+                        </div>
+                        <button class="btn btn-danger">Confirm</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+    <jsp:include page="../layout/footer.jsp" />
+</div>
+

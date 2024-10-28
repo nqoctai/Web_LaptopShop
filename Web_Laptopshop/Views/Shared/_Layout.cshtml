@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+          rel="stylesheet" />
+    <link href="~/Content/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+          rel="stylesheet" />
+</head>
+@using Web_Laptopshop.Models
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+         class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/Home/Index" class="navbar-brand">
+                    <h1 class="text-primary display-6">Laptopshop</h1>
+                </a>
+                <button class="navbar-toggler py-2 px-3"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white justify-content-between mx-5"
+                     id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        <a href="/Home/Index"
+                           class="nav-item nav-link active">Trang Chủ</a>
+                        <a href="/Home/GioiThieu" class="nav-item nav-link">Giới thiệu</a>
+                        <a href="/SanPham/Index" class="nav-item nav-link">Sản Phẩm</a>
+                        <div class="nav-item dropdown">
+                            <a href="#"
+                               class="nav-link dropdown-toggle"
+                               data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                                <a href="/showcart.html"
+                                   class="dropdown-item">Cart</a>
+                                <a href="/checkout.html"
+                                   class="dropdown-item">Checkout</a>
+                                <a href="./404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div>
+                        <a href="/Home/LienHe" class="nav-item nav-link">Liên hệ</a>
+                    </div>
+                    <div class="d-flex m-3 me-0">
+                        <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
+                                data-bs-toggle="modal"
+                                data-bs-target="#searchModal">
+                            <i class="fas fa-search text-primary"></i>
+                        </button>
+                        <a href="/Home/GioHang"
+                           class="position-relative me-4 my-auto">
+                            <i class="fa fa-shopping-bag fa-2x"></i>
+                            <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                  style="
+                                     top: -5px;
+                                     left: 15px;
+                                     height: 20px;
+                                     min-width: 20px;
+                                 ">
+                                @{
+                                    if(Session["gh"] != null)
+                                    {
+                                        GioHang gh = Session["gh"] as GioHang;
+                                        <span>@gh.SoMatHang()</span>
+                                    }else
+                                    {
+                                        <span>0</span>
+                                    }
+                                }
+                            </span>
+                        </a>
+                        <div class="dropdown my-auto">
+                            <a href="#"
+                               class="dropdown"
+                               role="button"
+                               id="dropdownMenuLink"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fas fa-user fa-2x"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end p-4"
+                                aria-labelledby="dropdownMenuLink">
+                                @if (Session["nd"] != null)
+                                {
+                                    NguoiDung nd = Session["nd"] as NguoiDung;
+                                    <li class="d-flex align-items-center flex-column"
+                                        style="min-width: 300px">
+                                        <img style="
+                                             width: 150px;
+                                             height: 150px;
+                                             border-radius: 50%;
+                                             overflow: hidden;
+                                         "
+                                             src="/img/avatar.jpg"
+                                             alt="Avatar" />
+                                        <div class="text-center my-3">
+                                            <div>@nd.TaiKhoan</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="./personalAccount.html">Quản lý tài khoản</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="order-history.html">Lịch sử mua hàng</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <a href="/TaiKhoan/DangXuat">
+                                            <button class="dropdown-item">
+                                                Đăng xuất
+                                            </button>
+                                        </a>
+
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="/TaiKhoan/DangNhap">Đăng Nhập</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="/TaiKhoan/DangKy">Đăng Ký</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Modal Search Start -->
+    <div class="modal fade"
+         id="searchModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-search me-2"></i> Tìm kiếm từ khóa
+                    </h5>
+                    <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center bg-light">
+                    <div class="input-group w-50 mx-auto">
+                        <input type="search"
+                               class="form-control form-control-lg border-0 shadow-sm"
+                               placeholder="Nhập từ khóa tìm kiếm..."
+                               aria-describedby="search-icon-1" />
+                        <button id="search-icon-1"
+                                class="btn btn-primary text-white px-4"
+                                style="border-radius: 0">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Search End -->
+    @RenderBody()
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+        <div class="container py-5">
+            <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5)">
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <a href="#" target="_blank">
+                            <h1 class="text-primary mb-0">Laptopshop</h1>
+                            <p class="text-secondary mb-0">
+                                Nghĩa Tiến Tài
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-4">
+                        <div class="d-flex justify-content-end pt-3">
+                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href="">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href="">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href="">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a class="btn btn-outline-secondary btn-md-square rounded-circle" href="">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-light mb-3">
+                            Welcome to our store !
+                        </h4>
+                        <p>
+                            Đến với của hàng của chúng tôi sẽ cho bạn những
+                            sản phẩm công nghệ chất lượng cao và giá rẻ. Đầy
+                            đủ tất cả các loại sản phẩm và bạn có thể tùy
+                            chọn những sản phẩm bạn thích.
+                        </p>
+                        <a href="./Introduce.html" class="btn border-secondary py-2 px-4 rounded-pill text-primary">
+                            Read
+                            More
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex flex-column text-start footer-item">
+                        <h4 class="text-light mb-3">Shop Info</h4>
+                        <a class="btn-link" href="">Trang chủ</a>
+                        <a class="btn-link" href="">Sản phẩm</a>
+                        <a class="btn-link" href="">Page</a>
+                        <a class="btn-link" href="">Liên hệ</a>
+                        <a class="btn-link" href="">Trợ giúp</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="d-flex flex-column text-start footer-item">
+                        <h4 class="text-light mb-3">Customer support</h4>
+                        <a class="btn-link" href="#">Thẻ ưu đãi</a>
+                        <a class="btn-link" href="#">
+                            Hướng dẫn mua online
+                        </a>
+                        <a class="btn-link" href="#">Chính sách trả góp</a>
+                        <a class="btn-link" href="#">Chính sách bảo hành</a>
+                        <a class="btn-link" href="#">Dịch vụ sữa chữa</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-light mb-3">Contact</h4>
+                        <p>Address: 49 Nguyễn Đỗ Cung, Tấn Phú, TP.HCM</p>
+                        <p>Email: abc2004@gmail.com</p>
+                        <p>Phone: 0867173946</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="text-light">&copy; 2024 Laptopshop. All Rights Reserved.</span>
+                </div>
+                <div class="col-md-6 text-light text-md-end">
+                    Cao Đức Nghĩa - Huỳnh Công Tiến - Đặng Ngọc Tài
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/lib/easing/easing.min.js"></script>
+    <script src="~/Content/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/Content/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="~/Content/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+    <!-- jQuery và Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
