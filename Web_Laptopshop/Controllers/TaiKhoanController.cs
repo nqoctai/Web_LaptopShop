@@ -48,9 +48,19 @@ namespace Web_Laptopshop.Controllers
             {
                 Session["nd"] = nd;
                 return RedirectToAction("Index", "Home");
+            }else
+            {
+                QuanTriVien qtv = db.QuanTriViens.FirstOrDefault(item => item.TaiKhoan == lvm.TenNguoiDung && item.MatKhau == lvm.MatKhau);
+                if(qtv!=null)
+                {
+                    Session["qtv"] = qtv;
+                    return RedirectToAction("Index", "TrangChu", new { area = "QuanLy"});
+                }else
+                {
+                    //ModelState.AddModelError("Login Error", "Tên người dùng hoặc mật khẩu không đúng");
+                    return View();
+                }
             }
-            return View();
-
         }
 
         public ActionResult DangXuat()

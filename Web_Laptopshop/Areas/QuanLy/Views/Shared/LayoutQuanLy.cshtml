@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
           rel="stylesheet" />
 </head>
+@using Web_Laptopshop.Models
 <body>
     <nav class="sb-topnav navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <!-- Navbar Brand -->
@@ -26,7 +27,12 @@
         </button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3">
-            <span class="text-white">Welcome, Admin</span>
+            @if(Session["qtv"] != null)
+            {
+                QuanTriVien qtv = Session["qtv"] as QuanTriVien;
+                <span class="text-white">Welcome, @qtv.TaiKhoan</span>
+            }
+            
         </form>
         <!-- Navbar Right -->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -42,9 +48,10 @@
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li>
-                        <form method="post" action="/logout">
+                        <a style="text-decoration: none" href="/TaiKhoan/DangXuat">
                             <button class="dropdown-item">Logout</button>
-                        </form>
+                        </a>
+                       
                     </li>
                 </ul>
             </li>

@@ -27,6 +27,30 @@ namespace Web_Laptopshop.Areas.QuanLy.Controllers
             ViewBag.DanhSachPhanKhuc = db.PhanKhucs.ToList();
             return View();
         }
+        private void AddMoTaSanPham(string linhKienName, string noiDung, SanPham sp)
+        {
+                var lk = db.LinhKiens.FirstOrDefault(x => x.TenLinhKien == linhKienName);
+                if (lk != null)
+                {
+                    var mt = db.MoTas.FirstOrDefault(x => x.NoiDung == noiDung && x.LinhKien == lk);
+                    if (mt == null)
+                    {
+                        mt = new MoTa
+                        {
+                            LinhKien = lk,
+                            NoiDung = noiDung
+                        };
+                        db.MoTas.InsertOnSubmit(mt);
+                        // Nếu cần thêm vào MoTas, chèn vào đây
+                    }
+                    var mtsp = new MoTaSanPham
+                    {
+                        MoTa = mt,
+                        SanPham = sp
+                    };
+                    db.MoTaSanPhams.InsertOnSubmit(mtsp);
+                }
+        }
 
         [HttpPost]
         public ActionResult ThemSanPham(FormCollection c, IEnumerable<HttpPostedFileBase> hinhanhFile)
@@ -36,6 +60,31 @@ namespace Web_Laptopshop.Areas.QuanLy.Controllers
             sp.Gia = decimal.Parse(c["txtGia"]);
             sp.SoLuong = int.Parse(c["txtSoLuong"]);
             sp.TieuDe = c["txtMoTaNgan"];
+            string cpuValue = c["txtCPU"];
+            string cardValue = c["txtCard"];
+            string manHinhValue = c["txtManHinh"];
+            string ramValue = c["txtRam"];
+            string romValue = c["txtRom"];
+            if (!string.IsNullOrEmpty(c["txtCPU"]))
+            {
+                AddMoTaSanPham("CPU", cpuValue, sp);
+            }
+            if (!string.IsNullOrEmpty(c["txtCard"]))
+            {
+                AddMoTaSanPham("CardManHinh", cardValue, sp);
+            }
+            if (!string.IsNullOrEmpty(c["txtManHinh"]))
+            {
+                AddMoTaSanPham("ManHinh", manHinhValue, sp);
+            }
+            if (!string.IsNullOrEmpty(c["txtRam"]))
+            {
+                AddMoTaSanPham("RAM", ramValue, sp);
+            }
+            if (!string.IsNullOrEmpty(c["txtRom"]))
+            {
+                AddMoTaSanPham("ROM", romValue, sp);
+            }
             string idThuongHieu = c["txtThuongHieu"];
             ThuongHieu thuongHieu = db.ThuongHieus.FirstOrDefault(x=> x.Id == long.Parse(idThuongHieu));
             sp.ThuongHieu = thuongHieu;
@@ -71,7 +120,7 @@ namespace Web_Laptopshop.Areas.QuanLy.Controllers
             }
             db.SanPhams.InsertOnSubmit(sp);
             db.SubmitChanges();
-            return RedirectToAction("BangSanPham");
+            return RedirectToAction("Index");
         }
 
         public ActionResult XemSanPham(long? id)
@@ -151,6 +200,10 @@ namespace Web_Laptopshop.Areas.QuanLy.Controllers
         public ActionResult XoaSanPham(FormCollection c)
         {
             SanPham sp = db.SanPhams.FirstOrDefault(x=>x.Id == long.Parse(c["ID"]));
+            List<HinhAnhSanPham> listHA = sp.HinhAnhSanPhams.ToList();
+            List<MoTaSanPham> listMota = sp.MoTaSanPhams.ToList();
+            db.MoTaSanPhams.DeleteAllOnSubmit(listMota);
+            db.HinhAnhSanPhams.DeleteAllOnSubmit(listHA);
             db.SanPhams.DeleteOnSubmit(sp);
             db.SubmitChanges();
             return RedirectToAction("Index");

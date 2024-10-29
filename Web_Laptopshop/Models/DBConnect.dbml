@@ -12,17 +12,6 @@
       <Association Name="SanPham_BaoHanh" Member="SanPham" ThisKey="SanPhamId" OtherKey="Id" Type="SanPham" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ChiTietDonHang" Member="ChiTietDonHangs">
-    <Type Name="ChiTietDonHang">
-      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DonHangId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="SanPhamId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Gia" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
-      <Association Name="DonHang_ChiTietDonHang" Member="DonHang" ThisKey="DonHangId" OtherKey="Id" Type="DonHang" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="SanPham_ChiTietDonHang" Member="SanPham" ThisKey="SanPhamId" OtherKey="Id" Type="SanPham" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.DanhGia" Member="DanhGias">
     <Type Name="DanhGia">
       <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -33,6 +22,17 @@
       <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="NguoiDung_DanhGia" Member="NguoiDung" ThisKey="NguoiDungId" OtherKey="Id" Type="NguoiDung" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="SanPham_DanhGia" Member="SanPham" ThisKey="SanPhamId" OtherKey="Id" Type="SanPham" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietDonHang" Member="ChiTietDonHangs">
+    <Type Name="ChiTietDonHang">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DonHangId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SanPhamId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Association Name="DonHang_ChiTietDonHang" Member="DonHang" ThisKey="DonHangId" OtherKey="Id" Type="DonHang" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="SanPham_ChiTietDonHang" Member="SanPham" ThisKey="SanPhamId" OtherKey="Id" Type="SanPham" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.DonHang" Member="DonHangs">
@@ -66,6 +66,13 @@
       <Association Name="KhuyenMai_SanPham" Member="SanPhams" ThisKey="Id" OtherKey="KhuyenMaiId" Type="SanPham" />
     </Type>
   </Table>
+  <Table Name="dbo.LinhKien" Member="LinhKiens">
+    <Type Name="LinhKien">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenLinhKien" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="LinhKien_MoTa" Member="MoTas" ThisKey="Id" OtherKey="LinhKienId" Type="MoTa" />
+    </Type>
+  </Table>
   <Table Name="dbo.LoaiSanPham" Member="LoaiSanPhams">
     <Type Name="LoaiSanPham">
       <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -77,7 +84,9 @@
     <Type Name="MoTa">
       <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LinhKienId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Association Name="MoTa_MoTaSanPham" Member="MoTaSanPhams" ThisKey="Id" OtherKey="MoTaId" Type="MoTaSanPham" />
+      <Association Name="LinhKien_MoTa" Member="LinhKien" ThisKey="LinhKienId" OtherKey="Id" Type="LinhKien" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MoTaSanPham" Member="MoTaSanPhams">
@@ -87,13 +96,6 @@
       <Column Name="MoTaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="MoTa_MoTaSanPham" Member="MoTa" ThisKey="MoTaId" OtherKey="Id" Type="MoTa" IsForeignKey="true" />
       <Association Name="SanPham_MoTaSanPham" Member="SanPham" ThisKey="SanPhamId" OtherKey="Id" Type="SanPham" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PhanKhuc" Member="PhanKhucs">
-    <Type Name="PhanKhuc">
-      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenPhanKhuc" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="PhanKhuc_SanPham" Member="SanPhams" ThisKey="Id" OtherKey="PhanKhucId" Type="SanPham" />
     </Type>
   </Table>
   <Table Name="dbo.NguoiDung" Member="NguoiDungs">
@@ -110,6 +112,13 @@
       <Association Name="NguoiDung_DanhGia" Member="DanhGias" ThisKey="Id" OtherKey="NguoiDungId" Type="DanhGia" />
       <Association Name="NguoiDung_DonHang" Member="DonHangs" ThisKey="Id" OtherKey="NguoiDungId" Type="DonHang" />
       <Association Name="NguoiDung_SanPhamYeuThich" Member="SanPhamYeuThiches" ThisKey="Id" OtherKey="NguoiDungId" Type="SanPhamYeuThich" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhanKhuc" Member="PhanKhucs">
+    <Type Name="PhanKhuc">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenPhanKhuc" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="PhanKhuc_SanPham" Member="SanPhams" ThisKey="Id" OtherKey="PhanKhucId" Type="SanPham" />
     </Type>
   </Table>
   <Table Name="dbo.QuanTriVien" Member="QuanTriViens">
@@ -134,8 +143,8 @@
       <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="NgayCapNhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="SanPham_BaoHanh" Member="BaoHanhs" ThisKey="Id" OtherKey="SanPhamId" Type="BaoHanh" />
-      <Association Name="SanPham_ChiTietDonHang" Member="ChiTietDonHangs" ThisKey="Id" OtherKey="SanPhamId" Type="ChiTietDonHang" />
       <Association Name="SanPham_DanhGia" Member="DanhGias" ThisKey="Id" OtherKey="SanPhamId" Type="DanhGia" />
+      <Association Name="SanPham_ChiTietDonHang" Member="ChiTietDonHangs" ThisKey="Id" OtherKey="SanPhamId" Type="ChiTietDonHang" />
       <Association Name="SanPham_HinhAnhSanPham" Member="HinhAnhSanPhams" ThisKey="Id" OtherKey="SanPhamId" Type="HinhAnhSanPham" />
       <Association Name="SanPham_MoTaSanPham" Member="MoTaSanPhams" ThisKey="Id" OtherKey="SanPhamId" Type="MoTaSanPham" />
       <Association Name="SanPham_SanPhamYeuThich" Member="SanPhamYeuThiches" ThisKey="Id" OtherKey="SanPhamId" Type="SanPhamYeuThich" />
@@ -155,6 +164,13 @@
       <Association Name="SanPham_SanPhamYeuThich" Member="SanPham" ThisKey="SanPhamId" OtherKey="Id" Type="SanPham" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ThuongHieu" Member="ThuongHieus">
+    <Type Name="ThuongHieu">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenThuongHieu" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ThuongHieu_SanPham" Member="SanPhams" ThisKey="Id" OtherKey="ThuongHieuId" Type="SanPham" />
+    </Type>
+  </Table>
   <Table Name="dbo.ThanhToan" Member="ThanhToans">
     <Type Name="ThanhToan">
       <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -162,13 +178,6 @@
       <Column Name="TrangThaiThanhToan" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="NgayThanhToan" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="DonHang_ThanhToan" Member="DonHang" ThisKey="Id" OtherKey="Id" Type="DonHang" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ThuongHieu" Member="ThuongHieus">
-    <Type Name="ThuongHieu">
-      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenThuongHieu" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="ThuongHieu_SanPham" Member="SanPhams" ThisKey="Id" OtherKey="ThuongHieuId" Type="SanPham" />
     </Type>
   </Table>
   <Table Name="dbo.TinhTrangDonHang" Member="TinhTrangDonHangs">

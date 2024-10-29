@@ -353,14 +353,14 @@
     <Content Include="Areas\QuanLy\Views\SanPham\XemSanPham.cshtml" />
     <Content Include="Areas\QuanLy\Views\SanPham\ChinhSuaSanPham.cshtml" />
     <Content Include="Areas\QuanLy\Views\SanPham\XoaSanPham.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NguoiDung\ChinhSuaNguoiDung.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NguoiDung\XemNguoiDung.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NguoiDung\XoaNguoiDung.cshtml" />
     <Content Include="Models\DBConnect.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DBConnect.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\QuanLy\Views\NguoiDung\ChinhSuaNguoiDung.cshtml" />
-    <Content Include="Areas\QuanLy\Views\NguoiDung\XemNguoiDung.cshtml" />
-    <Content Include="Areas\QuanLy\Views\NguoiDung\XoaNguoiDung.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
