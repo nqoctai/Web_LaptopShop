@@ -203,6 +203,7 @@ namespace Web_Laptopshop.Areas.QuanLy.Controllers
             spVM.SanPham = sp;
             spVM.HinhAnhDaiDien = sp.HinhDaiDien;
             spVM.listHinhAnh = sp.HinhAnhSanPhams.ToList();
+            ViewBag.ListMoTa = sp.MoTaSanPhams.ToList();
             return View(spVM);
         }
 

@@ -5,7 +5,7 @@
     Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
 }
 
-
+@using Web_Laptopshop.Models
 <style>
     body {
         background-color: #f8f9fa;
@@ -122,12 +122,13 @@
                                     <strong>Thương hiệu:</strong>
                                     <span class="text-info">@Model.SanPham.ThuongHieu.TenThuongHieu</span>
                                 </p>
-                                <p class="card-text">
-                                    <strong>Chi tiết mô tả:</strong>
-                                </p>
-                                <p class="text-muted">
+                                <button type="button"
+                                        class="btn btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#descriptionModal">
+                                    Xem chi tiết mô tả
+                                </button>
 
-                                </p>
                                 <div class="text-end mt-5">
                                     <a href="/QuanLy/SanPham/Index"
                                        class="btn btn-primary">
@@ -138,6 +139,138 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade"
+     id="descriptionModal"
+     tabindex="-1"
+     aria-labelledby="descriptionModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold text-primary"
+                    id="descriptionModalLabel">
+                    Mô tả chi tiết ASUS TUF Gaming F15 FX506HF
+                    HN017W
+                </h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    @foreach (MoTaSanPham mt in ViewBag.ListMoTa)
+                    {
+                        if (mt.MoTa.LinhKien == null)
+                        {
+                            <span>@mt.MoTa.NoiDung</span>
+                        }
+                    }
+                </p>
+                @if (Model.SanPham.LoaiSanPham.TenLoai == "Laptop")
+                {
+                    <div class="p-3 border rounded bg-light">
+                        <h6 class="fw-bold mb-3">Thông số kỹ thuật</h6>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th scope="col" style="width: 30%">
+                                        Thông số
+                                    </th>
+                                    <th scope="col" style="width: 70%">
+                                        Chi tiết
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                    List<MoTaSanPham> listMota = ViewBag.ListMoTa as List<MoTaSanPham> ?? new List<MoTaSanPham>();
+                                }
+                                <tr>
+                                    <th scope="row" class="bg-light">Hệ điều hành</th>
+                                    <td>
+                                        @{
+                    var heDieuHanh = listMota.FirstOrDefault(x => x.MoTa != null && x.MoTa.LinhKien != null && x.MoTa.LinhKien.TenLinhKien == "HeDieuHanh");
+                    string noiDungHDH = "";
+                    if (heDieuHanh != null && heDieuHanh.MoTa != null)
+                    {
+                        noiDungHDH = heDieuHanh.MoTa.NoiDung;
+                    }
+                                        }
+                                        @noiDungHDH
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="bg-light">CPU</th>
+                                    <td>
+                                        @{
+                    var cpu = listMota.FirstOrDefault(x => x.MoTa != null && x.MoTa.LinhKien != null && x.MoTa.LinhKien.TenLinhKien == "CPU");
+                    string noiDungCPU = "";
+                    if (cpu != null && cpu.MoTa != null)
+                    {
+                        noiDungCPU = cpu.MoTa.NoiDung;
+                    }
+                                        }
+                                        @noiDungCPU
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="bg-light">Card đồ họa</th>
+                                    <td>
+                                        @{
+                    var cardDoHoa = listMota.FirstOrDefault(x => x.MoTa != null && x.MoTa.LinhKien != null && x.MoTa.LinhKien.TenLinhKien == "CardManHinh");
+                    string noiDungCard = "";
+                    if (cardDoHoa != null && cardDoHoa.MoTa != null)
+                    {
+                        noiDungCard = cardDoHoa.MoTa.NoiDung;
+                    }
+                                        }
+                                        @noiDungCard
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="bg-light">Màn hình</th>
+                                    <td>
+                                        @{
+                    var manHinh = listMota.FirstOrDefault(x => x.MoTa != null && x.MoTa.LinhKien != null && x.MoTa.LinhKien.TenLinhKien == "ManHinh");
+                    string noiDungManHinh = "";
+                    if (manHinh != null && manHinh.MoTa != null)
+                    {
+                        noiDungManHinh = manHinh.MoTa.NoiDung;
+                    }
+                                        }
+                                        @noiDungManHinh
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="bg-light">RAM</th>
+                                    <td>
+                                        @{
+                    var ram = listMota.FirstOrDefault(x => x.MoTa != null && x.MoTa.LinhKien != null && x.MoTa.LinhKien.TenLinhKien == "RAM");
+                    string noiDungRAM = "";
+                    if (ram != null && ram.MoTa != null)
+                    {
+                        noiDungRAM = ram.MoTa.NoiDung;
+                    }
+                                        }
+                                        @noiDungRAM
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Đóng
+                </button>
             </div>
         </div>
     </div>
