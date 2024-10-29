@@ -12,18 +12,26 @@
         <!-- Form bắt đầu với Html.BeginForm -->
         @using (Html.BeginForm("DangNhap", "TaiKhoan", FormMethod.Post))
         {
-            <!-- Tên Người Dùng -->
-            <div class="mb-4 input-group">
-                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                @Html.TextBoxFor(m => m.TenNguoiDung, new { @class = "form-control", placeholder = "Nhập tên người dùng", required = "required" })
-                @Html.ValidationMessageFor(m => m.TenNguoiDung, "", new { @class = "text-danger" })
+           <!-- Tên Người Dùng -->
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    @Html.TextBoxFor(m => m.TenNguoiDung, new { @class = "form-control", placeholder = "Nhập tên người dùng", required = "required" })
+                </div>
+                @Html.ValidationMessageFor(m => m.TenNguoiDung, "", new { @class = "text-danger mt-1" })
             </div>
 
             <!-- Mật Khẩu -->
-            <div class="mb-4 input-group">
-                <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu", required = "required" })
-                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu", required = "required" })
+                </div>
+                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger mt-1" })
             </div>
 
             <!-- Nút Đăng Nhập -->
@@ -40,7 +48,7 @@
             <div class="text-center mt-4">
                 <small class="text-muted">
                     Chưa có tài khoản?
-                    <a href="@Url.Action("Register", "TaiKhoan")" class="text-decoration-none">Đăng Ký</a>
+                    <a href="@Url.Action("DangKy", "TaiKhoan")" class="text-decoration-none">Đăng Ký</a>
                 </small>
             </div>
         }

@@ -18,7 +18,9 @@ namespace Web_Laptopshop.ViewModel
         [Required(ErrorMessage = "Email không được để trống")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Email không được để trống")]
         public string HoTen { get; set; }
+        [Required(ErrorMessage = "Số điện thoại không được để trống")]
         public string SoDienThoai { get; set; }
     }
 }

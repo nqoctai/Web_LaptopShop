@@ -147,6 +147,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DangKyVM.cs" />
     <Compile Include="ViewModel\DangNhapVM.cs" />
+    <Compile Include="ViewModel\LinhKienField.cs" />
     <Compile Include="ViewModel\SanPhamVM.cs" />
   </ItemGroup>
   <ItemGroup>

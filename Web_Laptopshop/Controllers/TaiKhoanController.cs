@@ -23,15 +23,20 @@ namespace Web_Laptopshop.Controllers
         [HttpPost]
         public ActionResult DangKy(DangKyVM rvm)
         {
-            NguoiDung nguoiDung = new NguoiDung();
-            nguoiDung.TaiKhoan = rvm.TenNguoiDung;
-            nguoiDung.HoTen = rvm.HoTen;
-            nguoiDung.SoDienThoai = rvm.SoDienThoai;
-            nguoiDung.MatKhau = rvm.MatKhau;
-            nguoiDung.Email = rvm.Email;
-            db.NguoiDungs.InsertOnSubmit(nguoiDung);
-            db.SubmitChanges();
-            return View("DangNhap");
+            if(ModelState.IsValid)
+            {
+                NguoiDung nguoiDung = new NguoiDung();
+                nguoiDung.TaiKhoan = rvm.TenNguoiDung;
+                nguoiDung.HoTen = rvm.HoTen;
+                nguoiDung.SoDienThoai = rvm.SoDienThoai;
+                nguoiDung.MatKhau = rvm.MatKhau;
+                nguoiDung.Email = rvm.Email;
+                db.NguoiDungs.InsertOnSubmit(nguoiDung);
+                db.SubmitChanges();
+                return View("DangNhap");
+            }
+            return View(rvm);
+            
 
         }
 
@@ -43,29 +48,34 @@ namespace Web_Laptopshop.Controllers
         [HttpPost]
         public ActionResult DangNhap(DangNhapVM lvm)
         {
-            NguoiDung nd = db.NguoiDungs.FirstOrDefault(item => item.TaiKhoan == lvm.TenNguoiDung && item.MatKhau == lvm.MatKhau);
-            if (nd != null)
+            if(ModelState.IsValid)
             {
-                Session["nd"] = nd;
-                return RedirectToAction("Index", "Home");
-            }else
-            {
-                QuanTriVien qtv = db.QuanTriViens.FirstOrDefault(item => item.TaiKhoan == lvm.TenNguoiDung && item.MatKhau == lvm.MatKhau);
-                if(qtv!=null)
+                NguoiDung nd = db.NguoiDungs.FirstOrDefault(item => item.TaiKhoan == lvm.TenNguoiDung && item.MatKhau == lvm.MatKhau);
+                if (nd != null)
                 {
-                    Session["qtv"] = qtv;
-                    return RedirectToAction("Index", "TrangChu", new { area = "QuanLy"});
-                }else
+                    Session["nd"] = nd;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
                 {
-                    //ModelState.AddModelError("Login Error", "Tên người dùng hoặc mật khẩu không đúng");
-                    return View();
+                    QuanTriVien qtv = db.QuanTriViens.FirstOrDefault(item => item.TaiKhoan == lvm.TenNguoiDung && item.MatKhau == lvm.MatKhau);
+                    if (qtv != null)
+                    {
+                        Session["qtv"] = qtv;
+                        return RedirectToAction("Index", "TrangChu", new { area = "QuanLy" });
+                    }
+
                 }
             }
+            ModelState.AddModelError("MatKhau", "Tên người dùng hoặc mật khẩu không đúng");
+            return View(lvm);
+            
         }
 
         public ActionResult DangXuat()
         {
             Session["nd"] = null;
+            Session["gh"] = null;
             return RedirectToAction("Index", "Home");
         }
 

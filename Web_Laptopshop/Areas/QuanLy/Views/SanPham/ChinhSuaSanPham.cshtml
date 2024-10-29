@@ -5,6 +5,7 @@
 @using Web_Laptopshop.ViewModel
 @using Web_Laptopshop.Models
 @model SanPhamVM
+
 <div id="layoutSidenav_content">
     <main class="py-5">
         <div class="container">
@@ -14,192 +15,145 @@
                 </div>
                 <div class="card-body">
                     <form action="/QuanLy/SanPham/ChinhSuaSanPham/?id=@Model.SanPham.Id" method="post" enctype="multipart/form-data">
+
+                        <!-- Hiển thị hình đại diện -->
                         <div class="mb-4 text-center">
                             <div class="product-image-upload">
                                 @if (Model.HinhAnhDaiDien != null)
                                 {
-                                    <img src="~/Content/Upload/HinhAnh/@Model.HinhAnhDaiDien.HinhAnhUrl"
+                                    <img src="~/Content/Upload/HinhAnh/@Model.HinhAnhDaiDien"
                                          alt="Product Image"
                                          class="img-fluid product-image" />
                                 }
-                                @*<img id="productImagePreview"
-                                     src="~/Content/Upload/HinhAnh/@Model.HinhAnhUrl"
-                                     alt="Product Image"
-                                     class="product-image-preview border" />*@
-                                <label for="productImageUpload"
-                                       class="custom-file-upload mt-4">
-                                    <i class="bi bi-upload"></i>
-                                    Upload Image
+                                <label for="hinhdaiDienUpload" class="custom-file-upload mt-4">
+                                    <i class="bi bi-upload"></i> Hình đại diện
                                 </label>
-                                <input type="file"
-                                       id="productImageUpload"
-                                       class="d-none"
-                                       accept="image/*"
-                                       name="fileUpload"
-                                       onchange="previewProductImage(event)" multiple/>
+                                <input type="file" id="hinhdaiDienUpload" class="d-none" accept="image/*" name="hinhdaiDienUpload" onchange="previewProductImage(event)" />
                             </div>
                         </div>
 
+                        <!-- Nhập tên sản phẩm -->
                         <div class="mb-3">
-                            <label for="productName"
-                                   class="form-label font-weight-bold">Product Name</label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="productName"
-                                   name="Ten"
-                                   value="@Model.SanPham.TenSanPham"
-                                   required />
+                            <label for="productName" class="form-label font-weight-bold">Product Name</label>
+                            <input type="text" class="form-control" id="productName" name="Ten" value="@Model.SanPham.TenSanPham" required />
                         </div>
 
+                        <!-- Nhập giá và số lượng -->
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="productPrice"
-                                       class="form-label font-weight-bold">Price</label>
-                                <input type="number"
-                                       class="form-control"
-                                       id="productPrice"
-                                       name="Gia"
-                                       value="@Model.SanPham.Gia"
-                                       required />
+                                <label for="productPrice" class="form-label font-weight-bold">Price</label>
+                                <input type="number" class="form-control" id="productPrice" name="Gia" value="@Model.SanPham.Gia" required />
                             </div>
                             <div class="col-md-6">
-                                <label for="productQuantity"
-                                       class="form-label font-weight-bold">Quantity</label>
-                                <input type="number"
-                                       class="form-control"
-                                       id="productQuantity"
-                                       name="SoLuong"
-                                       value="@Model.SanPham.SoLuong"
-                                       required />
+                                <label for="productQuantity" class="form-label font-weight-bold">Quantity</label>
+                                <input type="number" class="form-control" id="productQuantity" name="SoLuong" value="@Model.SanPham.SoLuong" required />
                             </div>
                         </div>
 
+                        <!-- Nhập mô tả chi tiết -->
                         <div class="mb-3">
-                            <label for="productDetailDesc"
-                                   class="form-label font-weight-bold">Detail Description</label>
-                            <textarea id="productDetailDesc"
-                                      class="form-control"
-                                      style="resize: none"
-                                      rows="5"
-                                      name="MoTaChiTiet"
-                                      required>
-                                Mô tả
+                            <label for="productDetailDesc" class="form-label font-weight-bold">Detail Description</label>
+                            <textarea id="productDetailDesc" class="form-control" style="resize: none" rows="5" name="MoTaChiTiet" required>
+                                @foreach (MoTaSanPham mtsp in ViewBag.ListMoTa)
+                                {
+                                    if (mtsp.MoTa.LinhKien == null)
+                                    {
+                                        @mtsp.MoTa.NoiDung
+                                    }
+                                }
                             </textarea>
-
                         </div>
 
+                        <!-- Nhập mô tả ngắn -->
                         <div class="mb-3">
-                            <label for="productShortDesc"
-                                   class="form-label font-weight-bold">Short Description</label>
-                            <textarea id="productShortDesc"
-                                      class="form-control"
-                                      style="resize: none"
-                                      name="MoTaNgan"
-                                      rows="3"
-                                      required>
-@Model.SanPham.TieuDe
-                            </textarea>
-
+                            <label for="productShortDesc" class="form-label font-weight-bold">Short Description</label>
+                            <textarea id="productShortDesc" class="form-control" style="resize: none" name="MoTaNgan" rows="3" required>@Model.SanPham.TieuDe</textarea>
                         </div>
 
+                        <!-- Lặp qua từng mô tả để điền thông tin -->
+                        @foreach (var field in (List<LinhKienField>)ViewBag.LinhKienFields)
+                        {
+                            string noiDung = "";
+                            foreach (MoTaSanPham mtsp in ViewBag.ListMoTa)
+                            {
+                                if (mtsp.MoTa != null && mtsp.MoTa.LinhKien != null && mtsp.MoTa.LinhKien.TenLinhKien == field.FieldName)
+                                {
+                                    noiDung = mtsp.MoTa.NoiDung;
+                                    break;
+                                }
+                            }
+                            <div class="col-12 mb-3">
+                                <label for="@field.InputName" class="form-label">@field.PlaceHolder:</label>
+                                <input type="text" class="form-control" name="@field.InputName" value="@noiDung" placeholder="@field.PlaceHolder" />
+                            </div>
+                        }
+
+                        <!-- Dropdown thương hiệu -->
                         <div class="mb-3">
-                            <label for="productFactory"
-                                   class="form-label font-weight-bold">Factory</label>
-                            <select class="form-select"
-                                    id="productFactory"
-                                    value="@Model.SanPham.ThuongHieu.TenThuongHieu"
-                                    name="ThuongHieu"
-                                    required>
+                            <label for="productFactory" class="form-label font-weight-bold">Factory</label>
+                            <select class="form-select" id="productFactory" name="ThuongHieu" required>
                                 @foreach (ThuongHieu th in ViewBag.DanhSachThuongHieu)
                                 {
-                                    <option value="@th.Id">@th.TenThuongHieu</option>
+                                    <option value="@th.Id" @(th.Id == Model.SanPham.ThuongHieuId ? "selected" : "")>@th.TenThuongHieu</option>
                                 }
                             </select>
                         </div>
+
+                        <!-- Dropdown loại sản phẩm -->
                         <div class="mb-3">
-                            <label for="LoaiSanPham"
-                                   class="form-label font-weight-bold">Loại Sản Phẩm</label>
-                            <select class="form-select"
-                                    id="LoaiSanPham"
-                                    value="@Model.SanPham.LoaiSanPham.TenLoai"
-                                    name="LoaiSanPham"
-                                    required>
+                            <label for="LoaiSanPham" class="form-label font-weight-bold">Loại Sản Phẩm</label>
+                            <select class="form-select" id="LoaiSanPham" name="LoaiSanPham" required>
                                 @foreach (LoaiSanPham lsp in ViewBag.DanhSachLoaiSP)
                                 {
-                                    <option value="@lsp.Id">@lsp.TenLoai</option>
+                                    <option value="@lsp.Id" @(lsp.Id == Model.SanPham.LoaiSanPhamId ? "selected" : "")>@lsp.TenLoai</option>
                                 }
                             </select>
                         </div>
+
+                        <!-- Dropdown mục đích sử dụng -->
                         <div class="mb-3">
-                            <label for="MucDich"
-                                   class="form-label font-weight-bold">Mục đích sử dụng</label>
-                            <select class="form-select"
-                                    id="MucDich"
-                                    value="@Model.SanPham.PhanKhuc.TenPhanKhuc"
-                                    name="MucDich"
-                                    required>
+                            <label for="MucDich" class="form-label font-weight-bold">Mục đích sử dụng</label>
+                            <select class="form-select" id="MucDich" name="MucDich" required>
                                 @foreach (PhanKhuc md in ViewBag.DanhSachMucDich)
                                 {
-                                    <option value="@md.Id">@md.TenPhanKhuc</option>
+                                    <option value="@md.Id" @(md.Id == Model.SanPham.PhanKhucId ? "selected" : "")>@md.TenPhanKhuc</option>
                                 }
                             </select>
                         </div>
-
-                        @*<div class="mb-3">
-                                <label for="productTarget"
-                                       class="form-label font-weight-bold">Target</label>
-                                <select class="form-select"
-                                        id="productTarget"
-                                        name="PhanKhuc"
-                                        required>
-                                    <option value="GAMING">
-                                        Gaming
-                                    </option>
-                                    <option value="SINHVIEN-VANPHONG"
-                                            selected>
-                                        Sinh viên - Văn phòng
-                                    </option>
-                                    <option value="THIETKEDOHOA">
-                                        Thiết kế đồ họa
-                                    </option>
-                                    <option value="MONGNHE">
-                                        Mỏng nhẹ
-                                    </option>
-                                    <option value="DOANHNHAN">
-                                        Doanh nhân
-                                    </option>
-                                </select>
-                            </div>*@
+                        <div class="col-12 col-md-6">
+                            <label for="avatarFile"
+                                   class="form-label">Hình ảnh:</label>
+                            <input type="file"
+                                   id="avatarFile"
+                                   class="form-control"
+                                   accept=".png, .jpg, .jpeg"
+                                   name="hinhanhFile"
+                                   onchange="previewAvatar(event)" multiple />
+                        </div>
 
                         <div class="text-center">
-                            <button type="submit"
-                                    class="btn btn-primary">
-                                Update Product
-                            </button>
-                            <a href="/QuanLy/SanPham/Index"
-                               class="btn btn-secondary mx-2">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Update Product</button>
+                            <a href="/QuanLy/SanPham/Index" class="btn btn-secondary mx-2">Cancel</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </main>
-
-    <script>
-        function previewProductImage(event) {
-            const productImagePreview = document.getElementById(
-                "productImagePreview"
-            );
-            const file = event.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                productImagePreview.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    </script>
 </div>
+
+<script>
+    function previewProductImage(event) {
+        const productImagePreview = document.querySelector(".product-image");
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            productImagePreview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
 
 <style>
     body {

@@ -35,56 +35,57 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(ChiTietGioHang ctgh in Model.lst)
+                    @if (Session["gh"] != null)
                     {
-                        <tr class="text-center">
-                        <th scope="row">
-                            <img src="~/Content/Upload/HinhAnh/@ctgh.AnhBia"
-                                 class="img-fluid rounded-circle shadow-sm"
-                                 style="width: 70px; height: 70px"
-                                 alt="Laptop Dell Inspiron 15" />
-                        </th>
-                        <td>
-                            <p class="mb-0">
-                                <a href="#"
-                                   target="_blank"
-                                   class="text-decoration-none text-primary fw-bold">@ctgh.TenSanPham</a>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="mb-0">@ctgh.DonGia đ</p>
-                        </td>
-                        <td>
-                            <div class="input-group justify-content-center"
-                                 style="max-width: 120px; margin: 0 auto">
-                                <button class="btn btn-outline-secondary btn-sm px-2"
-                                        type="button">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input type="text"
-                                       class="form-control form-control-sm text-center"
-                                       style="max-width: 50px"
-                                       value="@ctgh.SoLuong" />
-                                <button class="btn btn-outline-secondary btn-sm px-2"
-                                        type="button">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="mb-0">
-                                @ctgh.ThanhTien đ
-                            </p>
-                        </td>
-                        <td>
-                            <button class="btn btn-outline-danger btn-sm">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </td>
-                    </tr>
+                        foreach (ChiTietGioHang ctgh in Model.lst)
+                        {
+                            <tr class="text-center">
+                                <th scope="row">
+                                    <img src="~/Content/Upload/HinhAnh/@ctgh.AnhBia"
+                                         class="img-fluid rounded-circle shadow-sm"
+                                         style="width: 70px; height: 70px"
+                                         alt="Laptop Dell Inspiron 15" />
+                                </th>
+                                <td>
+                                    <p class="mb-0">
+                                        <a href="#"
+                                           target="_blank"
+                                           class="text-decoration-none text-primary fw-bold">@ctgh.TenSanPham</a>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="mb-0">@ctgh.DonGia đ</p>
+                                </td>
+                                <td>
+                                    <div class="input-group justify-content-center"
+                                         style="max-width: 120px; margin: 0 auto">
+                                        <button class="btn btn-outline-secondary btn-sm px-2"
+                                                type="button">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <input type="text"
+                                               class="form-control form-control-sm text-center"
+                                               style="max-width: 50px"
+                                               value="@ctgh.SoLuong" />
+                                        <button class="btn btn-outline-secondary btn-sm px-2"
+                                                type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="mb-0">
+                                        @ctgh.ThanhTien đ
+                                    </p>
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
                     }
-                    
-                    
                 </tbody>
             </table>
         </div>

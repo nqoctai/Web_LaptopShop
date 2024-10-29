@@ -119,7 +119,7 @@
                                             <div class="fruite-img">
                                                 @if (sp.HinhAnhDaiDien != null)
                                                 {
-                                                    <img src="~/Content/Upload/HinhAnh/@sp.HinhAnhDaiDien.HinhAnhUrl"
+                                                    <img src="~/Content/Upload/HinhAnh/@sp.HinhAnhDaiDien"
                                                          class="img-fluid w-100 rounded-top" alt="" />
                                                 }
 
@@ -138,7 +138,7 @@
                                                     </a>
                                                 </h4>
                                                 <p style="font-size: 13px">
-                                                    Mô tả
+                                                    @sp.SanPham.TieuDe
                                                 </p>
                                                 <div class="d-flex flex-lg-wrap justify-content-center flex-column">
                                                     <p style="
@@ -185,7 +185,7 @@
             {
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card shadow border-0">
-                        <img src="~/Content/Upload/HinhAnh/@pk.HinhAnhDaiDien.HinhAnhUrl" class="card-img-top" />
+                        <img src="~/Content/Upload/HinhAnh/@pk.HinhAnhDaiDien" class="card-img-top" />
                         <div class="card-body text-center">
                             <h5 class="card-title">@pk.SanPham.TenSanPham</h5>
                             <p class="card-text text-danger">

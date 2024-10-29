@@ -21,7 +21,7 @@ namespace Web_Laptopshop.Controllers
                  .Select(sp => new SanPhamVM
                   {
                     SanPham = sp,
-                    HinhAnhDaiDien = sp.HinhAnhSanPhams.FirstOrDefault()
+                    HinhAnhDaiDien = sp.HinhDaiDien
                     }).ToList();
             List<SanPham> list = db.SanPhams.ToList();
             //HinhAnhSanPham ha = list.FirstOrDefault().HinhAnhSanPhams.FirstOrDefault();
@@ -32,7 +32,7 @@ namespace Web_Laptopshop.Controllers
                 .Select(sp => new SanPhamVM
                 {
                     SanPham = sp,
-                    HinhAnhDaiDien = sp.HinhAnhSanPhams.FirstOrDefault()
+                    HinhAnhDaiDien = sp.HinhDaiDien
                 }).ToList();
             ViewBag.DanhSachPhuKien = danhSachPhuKien;
             return View(danhSachSanPham);
@@ -40,6 +40,10 @@ namespace Web_Laptopshop.Controllers
 
         public ActionResult GioHang()
         {
+            if (Session["nd"] == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
             GioHang gh = (GioHang)Session["gh"];
             return View(gh);
         }
@@ -67,6 +71,10 @@ namespace Web_Laptopshop.Controllers
 
         public ActionResult ThemMatHang(long msp)
         {
+            if (Session["nd"] == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
             GioHang gh = (GioHang)Session["gh"];
             if(gh==null)
             {

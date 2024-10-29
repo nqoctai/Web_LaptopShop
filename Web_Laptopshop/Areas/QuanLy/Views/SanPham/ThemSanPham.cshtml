@@ -76,7 +76,16 @@
                                                     resize: none;
                                                 "></textarea>
                             </div>
-                           
+                            <div class="col-12">
+                                <label for="shortDesc"
+                                       class="form-label">Hệ điều hành:</label>
+                                <input type="text"
+                                       id="shortDesc"
+                                       class="form-control"
+                                       path="shortDesc"
+                                       name="txtHDH"
+                                       placeholder="Nhập hệ điều hành"></input>
+                            </div>
                             <div class="col-12">
                                 <label for="shortDesc"
                                        class="form-label">CPU:</label>
@@ -189,6 +198,26 @@
                                         </option>
                                     }
                                 </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="avatarFile"
+                                       class="form-label">Hình ảnh đại diện:</label>
+                                <input type="file"
+                                       id="hinhdaidienFile"
+                                       class="form-control"
+                                       accept=".png, .jpg, .jpeg"
+                                       name="hinhdaidienFile"
+                                       onchange="previewAvatar(event)"/>
+                            </div>
+                            <!-- Image Preview -->
+                            <div class="col-12 text-center">
+                                <img id="avatarPreview"
+                                     style="
+                                                    max-height: 250px;
+                                                    display: none;
+                                                "
+                                     alt="avatar preview"
+                                     class="rounded-circle border mt-3" />
                             </div>
                             <div class="col-12 col-md-6">
                                 <label for="avatarFile"

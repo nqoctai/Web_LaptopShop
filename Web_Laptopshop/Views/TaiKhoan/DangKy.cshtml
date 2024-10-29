@@ -17,56 +17,64 @@
 
         @using (Html.BeginForm("DangKy", "TaiKhoan", FormMethod.Post))
         {
-            <div class="mb-4 input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-person"></i>
-                </span>
-                @Html.TextBoxFor(m => m.TenNguoiDung, new { @class = "form-control", placeholder = "Nhập tên người dùng" })
-                @Html.ValidationMessageFor(m => m.TenNguoiDung, "", new { @class = "text-danger" })
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    @Html.TextBoxFor(m => m.TenNguoiDung, new { @class = "form-control", placeholder = "Nhập tên người dùng" })
+                </div>
+                @Html.ValidationMessageFor(m => m.TenNguoiDung, "", new { @class = "text-danger mt-1" })
             </div>
 
-            <div class="mb-4 input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-envelope"></i>
-                </span>
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Nhập email" })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-envelope"></i>
+                    </span>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Nhập email" })
+                </div>
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger mt-1" })
             </div>
 
-            <div class="mb-4 input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-person"></i>
-                </span>
-                @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", placeholder = "Nhập họ và tên" })
-                @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", placeholder = "Nhập họ và tên" })
+                </div>
+                @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger mt-1" })
             </div>
 
-            <div class="mb-4 input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-lock"></i>
-                </span>
-                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
-
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+                </div>
+                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger mt-1" })
             </div>
-            <div>@Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })</div>
 
-            <div class="mb-4 input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-lock-fill"></i>
-                </span>
-                @Html.PasswordFor(m => m.XacNhanMatKhau, new { @class = "form-control", placeholder = "Xác nhận mật khẩu" })
-
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock-fill"></i>
+                    </span>
+                    @Html.PasswordFor(m => m.XacNhanMatKhau, new { @class = "form-control", placeholder = "Xác nhận mật khẩu" })
+                </div>
+                @Html.ValidationMessageFor(m => m.XacNhanMatKhau, "", new { @class = "text-danger mt-1" })
             </div>
-            <div>@Html.ValidationMessageFor(m => m.XacNhanMatKhau, "", new { @class = "text-danger" })</div>
 
-
-
-            <div class="mb-4 input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-person"></i>
-                </span>
-                @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
-                @Html.ValidationMessageFor(m => m.SoDienThoai, "", new { @class = "text-danger" })
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-phone"></i>
+                    </span>
+                    @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
+                </div>
+                @Html.ValidationMessageFor(m => m.SoDienThoai, "", new { @class = "text-danger mt-1" })
             </div>
 
             <button type="submit" class="btn btn-success w-100">

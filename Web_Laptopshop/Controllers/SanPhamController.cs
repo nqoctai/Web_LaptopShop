@@ -20,7 +20,7 @@ namespace Web_Laptopshop.Controllers
                  .Select(sp => new SanPhamVM
                  {
                      SanPham = sp,
-                     HinhAnhDaiDien = sp.HinhAnhSanPhams.FirstOrDefault(),
+                     HinhAnhDaiDien = sp.HinhDaiDien,
                      listHinhAnh = sp.HinhAnhSanPhams.ToList()
                  }).ToList();
             //List<SanPham> danhSachSanPham = db.SanPhams.Where(x => x.LoaiSanPham.TenLoai == "Laptop").ToList();
@@ -35,7 +35,7 @@ namespace Web_Laptopshop.Controllers
                  .Select(sp => new SanPhamVM
                  {
                      SanPham = sp,
-                     HinhAnhDaiDien = sp.HinhAnhSanPhams.FirstOrDefault()
+                     HinhAnhDaiDien = sp.HinhDaiDien
                  }).ToList();
             //List<SanPham> danhSachPhuKien = db.SanPhams.Where(x => x.LoaiSanPham.TenLoai != "Laptop").ToList();
             ViewBag.DanhSachThuongHieu = db.ThuongHieus.ToList();
@@ -124,7 +124,7 @@ namespace Web_Laptopshop.Controllers
                  .Select(sp => new SanPhamVM
                  {
                      SanPham = sp,
-                     HinhAnhDaiDien = sp.HinhAnhSanPhams.FirstOrDefault(),
+                     HinhAnhDaiDien = sp.HinhDaiDien,
                      listHinhAnh = sp.HinhAnhSanPhams.ToList()
                  }).ToList();
             return View("Index", dssp);
@@ -214,7 +214,7 @@ namespace Web_Laptopshop.Controllers
                 .Select(sp => new SanPhamVM
                 {
                     SanPham = sp,
-                    HinhAnhDaiDien = sp.HinhAnhSanPhams.FirstOrDefault(),
+                    HinhAnhDaiDien = sp.HinhDaiDien,
                     listHinhAnh = sp.HinhAnhSanPhams.ToList()
                 }).ToList();
             return View("SanPhamPhuKien", dssp);
@@ -229,10 +229,12 @@ namespace Web_Laptopshop.Controllers
             SanPham sp = db.SanPhams.FirstOrDefault(x => x.Id == id);
             SanPhamVM spVM = new SanPhamVM();
             spVM.SanPham = sp;
-            spVM.HinhAnhDaiDien = sp.HinhAnhSanPhams.FirstOrDefault();
+            spVM.HinhAnhDaiDien = sp.HinhDaiDien;
             spVM.listHinhAnh = sp.HinhAnhSanPhams.ToList();
             List<MoTaSanPham> listMoTa = sp.MoTaSanPhams.ToList();
             ViewBag.ListMoTa = listMoTa;
+            List<ThuongHieu> listThuongHieu = db.ThuongHieus.ToList();
+            ViewBag.ListThuongHieu = listThuongHieu;
             return View(spVM);
         }
 

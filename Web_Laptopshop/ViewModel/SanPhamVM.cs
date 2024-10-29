@@ -9,7 +9,7 @@ namespace Web_Laptopshop.ViewModel
     public class SanPhamVM
     {
         public SanPham SanPham { get; set; }
-        public HinhAnhSanPham HinhAnhDaiDien {get;set;}
+        public string HinhAnhDaiDien {get;set;}
 
         public List<HinhAnhSanPham> listHinhAnh { get; set; }
     }
