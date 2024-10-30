@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Web_Laptopshop.Models
+@using System.Globalization;
 @model List<SanPhamVM>
 @using Web_Laptopshop.ViewModel
 <!-- Single Product Start -->
@@ -193,7 +194,7 @@
                                         </div>
                                         <div>
                                             <p style="font-size: 15px; text-align: center; width: 100%;" class="text-dark fw-bold mb-3">
-                                                @sp.SanPham.Gia đ
+                                                @sp.SanPham.Gia.ToString("C0", new CultureInfo("vi-VN"))
                                             </p>
                                             <a class="btn btn-primary w-100" href="/Home/ThemMatHang/?msp=@sp.SanPham.Id">
                                                 <i class="fa fa-shopping-bag me-2"></i>Thêm vào giỏ

@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-center display-4 font-weight-bold text-primary"
+                style="font-weight: 700">
+                Quản lý đơn hàng
+            </h1>
+            <ol class="breadcrumb mb-4 bg-light rounded">
+                <li class="breadcrumb-item">
+                    <a href="admin.html"
+                       class="text-decoration-none text-primary">Trang chủ</a>
+                </li>
+                <li class="breadcrumb-item active text-secondary"
+                    aria-current="page">
+                    Đơn hàng
+                </li>
+            </ol>
+            <div class="mt-5">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="text-secondary">
+                                Bảng đơn hàng
+                            </h3>
+                            <!-- Tìm kiếm theo ID -->
+                            <form action="" method="post">
+                                <div class="input-group"
+                                     style="width: 300px">
+                                    <input type="text"
+                                           class="form-control"
+                                           name="txtSearch"
+                                           placeholder="Tìm kiếm theo người mua..."
+                                           aria-label="Search by email" />
+                                    <button class="btn btn-primary"
+                                            type="submit">
+                                        <ion-icon name="search-outline"></ion-icon>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <hr />
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover text-center"
+                                   id="ordersTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Người mua</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>178,536,000 đ</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <span class="badge bg-warning">Đang giao</span>
+                                        </td>
+                                        <td>
+                                            <a href="/QuanLy/DonHang/XemDonHang"
+                                               class="btn btn-success btn-sm">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </a>
+                                            <a href="/QuanLy/DonHang/ChinhSuaDonHang"
+                                               class="btn btn-warning btn-sm mx-2">
+                                                <ion-icon name="pencil-outline"></ion-icon>
+                                            </a>
+                                            <a href="/QuanLy/DonHang/XoaDonHang"
+                                               class="btn btn-danger btn-sm"
+                                               onclick="confirmDelete(1)">
+                                                <ion-icon name="trash-outline"></ion-icon>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>2</th>
+                                        <td>19,500,000 đ</td>
+                                        <td>Dang Ngoc Tai</td>
+                                        <td>
+                                            <span class="badge bg-warning">Đang giao</span>
+                                        </td>
+                                        <td>
+                                            <a href="/QuanLy/DonHang/XemDonHang"
+                                               class="btn btn-success btn-sm">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </a>
+                                            <a href="/QuanLy/DonHang/ChinhSuaDonHang"
+                                               class="btn btn-warning btn-sm mx-2">
+                                                <ion-icon name="pencil-outline"></ion-icon>
+                                            </a>
+                                            <a href="/QuanLy/DonHang/XoaDonHang"
+                                               class="btn btn-danger btn-sm"
+                                               onclick="confirmDelete(1)">
+                                                <ion-icon name="trash-outline"></ion-icon>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>3</th>
+                                        <td>64,380,000 đ</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <span class="badge bg-warning">Đang giao</span>
+                                        </td>
+                                        <td>
+                                            <a href="/QuanLy/DonHang/XemDonHang"
+                                               class="btn btn-success btn-sm">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </a>
+                                            <a href="/QuanLy/DonHang/ChinhSuaDonHang"
+                                               class="btn btn-warning btn-sm mx-2">
+                                                <ion-icon name="pencil-outline"></ion-icon>
+                                            </a>
+                                            <a href="/QuanLy/DonHang/XoaDonHang"
+                                               class="btn btn-danger btn-sm"
+                                               onclick="confirmDelete(1)">
+                                                <ion-icon name="trash-outline"></ion-icon>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy;</div>
+                <div>
+                    <a href="#" target="_blank">Website</a>
+                    &middot;
+                    <a href="#" target="_blank">Youtube channel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

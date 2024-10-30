@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "XemDonHang";
+    Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main class="py-5">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="order-card card shadow-lg">
+                        <!-- Order information section -->
+                        <div class="col-md-12">
+                            <div class="card-body">
+                                <h3 class="text-primary mb-3">
+                                    Thông Tin Đơn Hàng
+                                </h3>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="bi bi-card-list me-2"></i>
+                                        <strong>ID Đơn hàng:</strong>
+                                        <span id="orderId">10234</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="bi bi-person me-2"></i>
+                                        <strong>Người đặt hàng:</strong>
+                                        <span id="orderCustomer">Nguyễn Văn A</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="bi bi-house me-2"></i>
+                                        <strong>Địa chỉ:</strong>
+                                        <span id="orderAddress">
+                                            49 Nguyen Do Cung,
+                                            Hanoi
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="bi bi-telephone me-2"></i>
+                                        <strong>Số điện thoại:</strong>
+                                        <span id="orderPhone">0123456789</span>
+                                    </li>
+                                </ul>
+
+                                <h4 class="text-secondary mt-4">
+                                    Danh sách sản phẩm:
+                                </h4>
+                                <ul class="list-group">
+                                    <!-- Product Item 1 -->
+                                    <li class="list-group-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-4">
+                                                <img src="~/Content/Upload/HinhAnh/1711080948771-acer-01.png"
+                                                     alt="Product Image"
+                                                     class="img-fluid border rounded"
+                                                     style="
+                                                                    max-height: 80px;
+                                                                    object-fit: cover;
+                                                                " />
+                                            </div>
+                                            <div class="col-8">
+                                                <strong>
+                                                    Tên Sản
+                                                    Phẩm:
+                                                </strong>
+                                                <span id="productName1">
+                                                    Laptop Asus TUF
+                                                    Gaming
+                                                </span>
+                                                <br />
+                                                <strong>Giá:</strong>
+                                                <span id="productPrice1"
+                                                      class="text-danger fw-bold">
+                                                    17,490,000
+                                                    đ
+                                                </span>
+                                                <br />
+                                                <strong>
+                                                    Số
+                                                    lượng:
+                                                </strong>
+                                                <span id="productQuantity1">2</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- Product Item 2 -->
+                                    <li class="list-group-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-4">
+                                                <img src="~/Content/Upload/HinhAnh/1711080948771-acer-01.png"
+                                                     alt="Product Image"
+                                                     class="img-fluid border rounded"
+                                                     style="
+                                                                    max-height: 80px;
+                                                                    object-fit: cover;
+                                                                " />
+                                            </div>
+                                            <div class="col-8">
+                                                <strong>
+                                                    Tên Sản
+                                                    Phẩm:
+                                                </strong>
+                                                <span id="productName2">
+                                                    Máy tính bảng
+                                                    Samsung Galaxy
+                                                    Tab
+                                                </span>
+                                                <br />
+                                                <strong>Giá:</strong>
+                                                <span id="productPrice2"
+                                                      class="text-danger fw-bold">
+                                                    12,500,000
+                                                    đ
+                                                </span>
+                                                <br />
+                                                <strong>
+                                                    Số
+                                                    lượng:
+                                                </strong>
+                                                <span id="productQuantity2">1</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="mt-3">
+                                    <i class="bi bi-calculator me-2"></i>
+                                    <strong>Tổng Thành tiền:</strong>
+                                    <span id="totalPrice"
+                                          class="text-success fw-bold">34,980,000 đ</span>
+                                </div>
+
+                                <div class="mt-3">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <strong>Trạng thái:</strong>
+                                    <span id="orderStatus"
+                                          class="badge bg-info text-dark">Đang xử lý</span>
+                                </div>
+                            </div>
+                            <div class="card-footer text-end">
+                                <a href="/QuanLy/DonHang"
+                                   class="btn btn-primary">
+                                    <i class="bi bi-arrow-left me-2"></i>Quay lại
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    .order-card {
+        border-radius: 10px;
+    }
+
+    .card-body h3 {
+        font-size: 1.5rem;
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .text-danger {
+        font-size: 1.2rem;
+    }
+
+    .text-success {
+        font-size: 1.2rem;
+    }
+
+    .badge {
+        font-size: 1rem;
+    }
+</style>
+

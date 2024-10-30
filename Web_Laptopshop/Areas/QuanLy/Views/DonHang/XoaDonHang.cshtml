@@ -1,30 +1,28 @@
-﻿@model Web_Laptopshop.Models.NguoiDung
-
-@{
-    ViewBag.Title = "XoaNguoiDung";
+﻿@{
+    ViewBag.Title = "XoaDonHang";
     Layout = "~/Areas/QuanLy/Views/Shared/LayoutQuanLy.cshtml";
 }
 
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Quản lý người dùng</h1>
+            <h1 class="mt-4">Quản lý đơn hàng</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                <li class="breadcrumb-item active">Users</li>
+                <li class="breadcrumb-item active">Đơn hàng</li>
             </ol>
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-12 mx-auto">
-                        <h3>Xóa người dùng với id=@Model.Id</h3>
+                        <h3>Xóa đơn hàng với id=1</h3>
                         <hr />
 
-                        <div class="alert alert-danger">Bạn có chắc chắn muốn xóa người dung @Model.Email</div>
+                        <div class="alert alert-danger">Bạn có chắc chắn muốn xóa đơn hàng với 1 không</div>
                     </div>
-                    <form method="post" action="/QuanLy/NguoiDung/XoaNguoiDung">
+                    <form method="post" action="">
                         <div class="mb-3" style="display: none;">
                             <label class="form-label">Id:</label>
-                            <input value="@Model.Id" name="Id" type="text" class="form-control" path="id" />
+                            <input value="" name="Id" type="text" class="form-control" path="id" />
                         </div>
                         <button class="btn btn-danger">Xác nhận</button>
                     </form>
@@ -35,6 +33,4 @@
 
         </div>
     </main>
-    
 </div>
-

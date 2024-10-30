@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\DonHangController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\NguoiDungController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\TrangChuController.cs" />
@@ -362,6 +363,10 @@
       <LastGenOutput>DBConnect.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\QuanLy\Views\DonHang\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DonHang\XemDonHang.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DonHang\ChinhSuaDonHang.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DonHang\XoaDonHang.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

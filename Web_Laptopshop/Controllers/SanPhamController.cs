@@ -193,10 +193,10 @@ namespace Web_Laptopshop.Controllers
             if (gia != null)
             {
                 query = query.Where(x =>
-                    gia.Contains("duoi-10-trieu") && x.Gia < 10000000 ||
-                    gia.Contains("10-15-trieu") && x.Gia >= 10000000 && x.Gia < 15000000 ||
-                    gia.Contains("15-20-trieu") && x.Gia >= 15000000 && x.Gia < 20000000 ||
-                    gia.Contains("tren-20-trieu") && x.Gia >= 20000000
+                    gia.Contains("duoi-500") && x.Gia < 500000 ||
+                    gia.Contains("500-1000") && x.Gia >= 500000 && x.Gia < 1000000 ||
+                    gia.Contains("1000-1500") && x.Gia >= 1000000 && x.Gia < 1500000 ||
+                    gia.Contains("tren-2-trieu") && x.Gia >= 2000000
                 );
             }
 

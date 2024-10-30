@@ -6,6 +6,8 @@
 @using Web_Laptopshop.Models
 @model List<SanPhamVM>
 @using Web_Laptopshop.ViewModel
+@using System.Globalization;
+
 <!-- Single Product Start -->
 <div class="container-fluid py-5 mt-5">
     <div class="container py-5">
@@ -107,36 +109,36 @@
                                            type="checkbox"
                                            id="price-2"
                                            name="txtMucGia"
-                                           value="duoi-10-trieu" />
+                                           value="duoi-500" />
                                     <label class="form-check-label"
-                                           for="price-2">Dưới 10 triệu</label>
+                                           for="price-2">Dưới 500K</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input"
                                            type="checkbox"
                                            id="price-3"
                                            name="txtMucGia"
-                                           value="10-15-trieu" />
+                                           value="500-1000" />
                                     <label class="form-check-label"
-                                           for="price-3">Từ 10 - 15 triệu</label>
+                                           for="price-3">Từ 500k - 1 triệu</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input"
                                            type="checkbox"
                                            id="price-4"
                                            name="txtMucGia"
-                                           value="15-20-trieu" />
+                                           value="1000-1500" />
                                     <label class="form-check-label"
-                                           for="price-4">Từ 15 - 20 triệu</label>
+                                           for="price-4">Từ 1 triệu - 1 triệu 500k</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input"
                                            type="checkbox"
                                            id="price-5"
                                            name="txtMucGia"
-                                           value="tren-20-trieu" />
+                                           value="tren-2-trieu" />
                                     <label class="form-check-label"
-                                           for="price-5">Trên 20 triệu</label>
+                                           for="price-5">Trên 2 triệu</label>
                                 </div>
                             </div>
 
@@ -208,7 +210,7 @@
                                         <p class="product-description">@sp.SanPham.TieuDe</p>
                                         <div class="d-flex flex-lg-wrap justify-content-center flex-column">
                                             <p style="font-size: 15px;text-align: center;width: 100%;" class="text-dark fw-bold mb-3">
-                                                @sp.SanPham.Gia đ
+                                                @sp.SanPham.Gia.ToString("C0", new CultureInfo("vi-VN"))
                                             </p>
                                             <a class="btn btn-primary" href="/Home/ThemMatHang/?msp=@sp.SanPham.Id">
                                                 <i class="fa fa-shopping-bag me-2 text-primary"></i>

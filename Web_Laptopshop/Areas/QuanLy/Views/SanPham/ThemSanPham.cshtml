@@ -7,20 +7,20 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4 text-primary font-weight-bold">
-                Manage Products
+                Quản lý sản phẩm
             </h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
                 <li class="breadcrumb-item">
                     <a href="/QuanLy/TrangChu"
-                       class="text-decoration-none text-primary">Dashboard</a>
+                       class="text-decoration-none text-primary">Trang chủ</a>
                 </li>
-                <li class="breadcrumb-item active">Products</li>
+                <li class="breadcrumb-item active">Sản phẩm</li>
             </ol>
             <div class="card shadow-sm mt-5 p-4">
                 <div class="row">
                     <div class="col-md-6 col-12 mx-auto">
                         <h3 class="mb-4 text-secondary">
-                            Create a Product
+                            Tạo mới sản phẩm
                         </h3>
                         <form method="post" action="/QuanLy/SanPham/ThemSanPham"
                               class="row g-3"
@@ -33,7 +33,7 @@
                                        class="form-control"
                                        path="name"
                                        name="txtTen"
-                                       placeholder="Enter product name"
+                                       placeholder="Nhập tên sản phẩm"
                                        required />
                             </div>
                             <!-- Price -->
@@ -45,7 +45,7 @@
                                        class="form-control"
                                        path="price"
                                        name="txtGia"
-                                       placeholder="Enter product price"
+                                       placeholder="Nhập giá sản phẩm"
                                        required />
                             </div>
                             <!-- Detail Description -->
@@ -56,7 +56,7 @@
                                           class="form-control"
                                           path="detailDesc"
                                           name="txtMoTaChiTiet"
-                                          placeholder="Enter detailed description"
+                                          placeholder="Nhập mô tả chi tiết"
                                           style="
                                                     height: 150px;
                                                     resize: none;
@@ -70,7 +70,7 @@
                                           class="form-control"
                                           path="shortDesc"
                                           name="txtMoTaNgan"
-                                          placeholder="Enter short description"
+                                          placeholder="Nhập tiêu đề"
                                           style="
                                                     height: 100px;
                                                     resize: none;

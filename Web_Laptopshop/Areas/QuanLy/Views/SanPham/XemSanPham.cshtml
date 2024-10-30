@@ -260,6 +260,20 @@
                                         @noiDungRAM
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th scope="row" class="bg-light">ROM</th>
+                                    <td>
+                                        @{
+                    var rom = listMota.FirstOrDefault(x => x.MoTa != null && x.MoTa.LinhKien != null && x.MoTa.LinhKien.TenLinhKien == "ROM");
+                    string noiDungROM = "";
+                    if (rom != null && rom.MoTa != null)
+                    {
+                        noiDungROM = ram.MoTa.NoiDung;
+                    }
+                                        }
+                                        @noiDungROM
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

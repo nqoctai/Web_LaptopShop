@@ -12,7 +12,7 @@ namespace Web_Laptopshop.ViewModel
         public string TenNguoiDung { get; set; }
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
         public string MatKhau { get; set; }
-        [Required(ErrorMessage = "Confirm Password cannot be blank")]
+        [Required(ErrorMessage = "Xác nhận mật khẩu không được để trống")]
         [Compare("MatKhau", ErrorMessage = "Mật khẩu và Xác nhận mật khẩu không khớp")]
         public string XacNhanMatKhau { get; set; }
         [Required(ErrorMessage = "Email không được để trống")]

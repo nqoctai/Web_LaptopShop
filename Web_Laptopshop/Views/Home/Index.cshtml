@@ -5,6 +5,8 @@
 
 @model IEnumerable<SanPhamVM>
 
+
+@using System.Globalization;
 @using System;
 @using System.Collections.Generic;
 @using System.Linq;
@@ -140,11 +142,10 @@
                                                 </div>
                                                 <div class="text-center">
                                                     <p class="text-dark fw-bold mb-3" style="font-size: 15px;">
-                                                        @sp.SanPham.Gia VND
+                                                        @sp.SanPham.Gia.ToString("C0", new CultureInfo("vi-VN"))
                                                     </p>
                                                     <a class="btn btn-primary w-100" href="/Home/ThemMatHang/?msp=@sp.SanPham.Id">
-                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
+                                                        Thêm vào giỏ
                                                     </a>
                                                 </div>
                                             </div>
@@ -195,19 +196,20 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card shadow-sm border border-secondary rounded position-relative h-100" style="height: 470px;">
                         <div class="card-img-top overflow-hidden" style="height: 250px;">
-                            @*<img src="~/Content/Upload/HinhAnh/@pk.HinhAnhDaiDien" class="img-fluid w-100 h-100" style="-o-object-fit:cover" />*@
-
-                            <img src="~/Content/Upload/HinhAnh/1711078092373-asus-01.png" class="img-fluid w-100 h-100" style="-o-object-fit:cover; border-radius: 0;" />
+                            <img src="~/Content/Upload/HinhAnh/@pk.HinhAnhDaiDien" class="img-fluid w-100 h-100" style="-o-object-fit:cover" />
                         </div>
                         <div class="card-body text-center p-4 d-flex flex-column justify-content-between" style="height: 220px;">
                             <div>
                                 <h5 class="card-title text-dark fs-6" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     @pk.SanPham.TenSanPham
                                 </h5>
+                                <p style="font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    @pk.SanPham.TieuDe
+                                </p>
                             </div>
                             <div>
                                 <p class="card-text text-danger fw-bold" style="font-size: 15px;">
-                                    Giá: @pk.SanPham.Gia VNĐ
+                                    Giá: @pk.SanPham.Gia.ToString("C0", new CultureInfo("vi-VN")) VNĐ
                                 </p>
                                 <a href="/SanPham/ChiTietSanPham/@pk.SanPham.Id" class="btn btn-primary w-100">
                                     Xem Chi Tiết
