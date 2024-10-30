@@ -5,8 +5,6 @@
 
 @model IEnumerable<SanPhamVM>
 
-
-@using System.Globalization;
 @using System;
 @using System.Collections.Generic;
 @using System.Linq;
@@ -120,10 +118,10 @@
                                         <div class="rounded position-relative fruite-item h-100" style="height: 470px;">
                                             <div class="fruite-img" style="height: 250px; overflow: hidden;">
                                                 @if (sp.HinhAnhDaiDien != null)
-                                                    {
-                                                        <img src="~/Content/Upload/HinhAnh/@sp.HinhAnhDaiDien"
-                                                             class="img-fluid w-100 rounded-top h-100" alt="" />
-                                                    }
+                                                {
+                                                    <img src="~/Content/Upload/HinhAnh/@sp.HinhAnhDaiDien"
+                                                         class="img-fluid w-100 rounded-top h-100" alt="" />
+                                                }
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                  style="top: 10px; left: 10px;">
@@ -142,10 +140,11 @@
                                                 </div>
                                                 <div class="text-center">
                                                     <p class="text-dark fw-bold mb-3" style="font-size: 15px;">
-                                                        @sp.SanPham.Gia.ToString("C0", new CultureInfo("vi-VN"))
+                                                        @sp.SanPham.Gia VND
                                                     </p>
                                                     <a class="btn btn-primary w-100" href="/Home/ThemMatHang/?msp=@sp.SanPham.Id">
-                                                        Thêm vào giỏ
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                        Add to cart
                                                     </a>
                                                 </div>
                                             </div>
@@ -196,20 +195,19 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card shadow-sm border border-secondary rounded position-relative h-100" style="height: 470px;">
                         <div class="card-img-top overflow-hidden" style="height: 250px;">
-                            <img src="~/Content/Upload/HinhAnh/@pk.HinhAnhDaiDien" class="img-fluid w-100 h-100" style="-o-object-fit:cover" />
+                            @*<img src="~/Content/Upload/HinhAnh/@pk.HinhAnhDaiDien" class="img-fluid w-100 h-100" style="-o-object-fit:cover" />*@
+
+                            <img src="~/Content/Upload/HinhAnh/1711078092373-asus-01.png" class="img-fluid w-100 h-100" style="-o-object-fit:cover; border-radius: 0;" />
                         </div>
                         <div class="card-body text-center p-4 d-flex flex-column justify-content-between" style="height: 220px;">
                             <div>
                                 <h5 class="card-title text-dark fs-6" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     @pk.SanPham.TenSanPham
                                 </h5>
-                                <p style="font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                    @pk.SanPham.TieuDe
-                                </p>
                             </div>
                             <div>
                                 <p class="card-text text-danger fw-bold" style="font-size: 15px;">
-                                    Giá: @pk.SanPham.Gia.ToString("C0", new CultureInfo("vi-VN")) VNĐ
+                                    Giá: @pk.SanPham.Gia VNĐ
                                 </p>
                                 <a href="/SanPham/ChiTietSanPham/@pk.SanPham.Id" class="btn btn-primary w-100">
                                     Xem Chi Tiết
@@ -279,8 +277,7 @@
 
             <!-- Image Section -->
             <div class="col-lg-6">
-                <img src="./img/accessory-destop.webp" alt="Chất lượng linh kiện"
-                     class="img-fluid rounded shadow" />
+                <img src="~/Content/Upload/HinhAnh/z5982279511226_bfdba6ba1e3040e3af5bf7632d6121ef.jpg" alt="Chất lượng linh kiện" class="img-fluid rounded shadow" />
             </div>
         </div>
     </div>
@@ -315,7 +312,7 @@
 
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <img src="./img/sale-laptop.png" alt="Laptop Khuyến Mãi" class="img-fluid rounded shadow-lg" />
+                <img src="~/Content/img/sale-laptop.png" alt="Laptop Khuyến Mãi" class="img-fluid rounded shadow-lg" />
             </div>
 
             <div class="col-lg-6">
@@ -380,37 +377,37 @@
             <!-- Brand 1 -->
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                 <div class="brand-logo p-3 rounded shadow-sm bg-white">
-                    <img src="./img/brand-logo-msi.jpg" alt="MSI" class="img-fluid" style="height: 80px" />
+                    <img src="~/Content/img/brand-logo-msi.jpg" alt="MSI" class="img-fluid" style="height: 80px" />
                 </div>
             </div>
             <!-- Brand 2 -->
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                 <div class="brand-logo p-3 rounded shadow-sm bg-white">
-                    <img src="./img/brand-logo-lenovo.jpg" alt="Lenovo" class="img-fluid" style="height: 80px" />
+                    <img src="~/Content/img/brand-logo-lenovo.jpg" alt="Lenovo" class="img-fluid" style="height: 80px" />
                 </div>
             </div>
             <!-- Brand 3 -->
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                 <div class="brand-logo p-3 rounded shadow-sm bg-white">
-                    <img src="./img/brand-logo-dell.jpg" alt="Dell" class="img-fluid" style="height: 80px" />
+                    <img src="~/Content/img/brand-logo-dell.jpg" alt="Dell" class="img-fluid" style="height: 80px" />
                 </div>
             </div>
             <!-- Brand 4 -->
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                 <div class="brand-logo p-3 rounded shadow-sm bg-white">
-                    <img src="./img/brand-logo-hp.jpg" alt="HP" class="img-fluid" style="height: 80px" />
+                    <img src="~/Content/img/brand-logo-hp.jpg" alt="HP" class="img-fluid" style="height: 80px" />
                 </div>
             </div>
             <!-- Brand 5 -->
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                 <div class="brand-logo p-3 rounded shadow-sm bg-white">
-                    <img src="./img/brand-logo-asus.jpg" alt="Asus" class="img-fluid" style="height: 80px" />
+                    <img src="~/Content/img/brand-logo-asus.jpg" alt="Asus" class="img-fluid" style="height: 80px" />
                 </div>
             </div>
             <!-- Brand 6 -->
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                 <div class="brand-logo p-3 rounded shadow-sm bg-white">
-                    <img src="./img/brand-logo-apple.jpg" alt="Apple" class="img-fluid" style="height: 80px" />
+                    <img src="~/Content/img/brand-logo-apple.jpg" alt="Apple" class="img-fluid" style="height: 80px" />
                 </div>
             </div>
         </div>
@@ -466,7 +463,7 @@
             <!-- Thêm hình ảnh sản phẩm nổi bật -->
             <div class="col-lg-6 col-md-12 mb-4">
                 <div class="position-relative">
-                    <img src="./img/sale-laptop1.png" alt="Laptop Giảm Giá" class="img-fluid rounded shadow" />
+                    <img src="~/Content/img/sale-laptop1.png" alt="Laptop Giảm Giá" class="img-fluid rounded shadow" />
                     <div class="sale-badge position-absolute top-0 start-0 p-2 bg-dark text-white rounded">
                         Giảm giá
                     </div>
@@ -509,7 +506,7 @@
                     <div class="col-lg-3 col-md-4 col-6 mb-4">
                         <div class="card shadow-sm border border-secondary rounded position-relative h-100" style="height: 470px;">
                             <div class="card-img-top overflow-hidden" style="height: 250px;">
-                                <img src="./img/1711079496409-asus-02.png" alt="Sản phẩm 2" class="img-fluid w-100 h-100" style="object-fit: cover;" />
+                                <img src="~/Content/Upload/HinhAnh/1711078092373-asus-01.png" class="img-fluid w-100 h-100" style="-o-object-fit: cover;" />
                             </div>
                             <div class="card-body text-center p-4 d-flex flex-column justify-content-between" style="height: 220px;">
                                 <div>
@@ -535,7 +532,7 @@
                     <div class="col-lg-3 col-md-4 col-6 mb-4">
                         <div class="card shadow-sm border border-secondary rounded position-relative h-100" style="height: 470px;">
                             <div class="card-img-top overflow-hidden" style="height: 250px;">
-                                <img src="./img/1711081278418-dell-02.png" alt="Sản phẩm 3" class="img-fluid w-100 h-100" style="object-fit: cover;" />
+                                <img src="~/Content/Upload/HinhAnh/1711078092373-asus-01.png" class="img-fluid w-100 h-100" style="-o-object-fit: cover;" />
                             </div>
                             <div class="card-body text-center p-4 d-flex flex-column justify-content-between" style="height: 220px;">
                                 <div>
@@ -742,11 +739,10 @@
                     </div>
                     <div class="d-flex align-items-center flex-nowrap">
                         <div class="bg-secondary rounded">
-                            <img src="img/avatar.jpg" class="img-fluid rounded" style="width: 100px; height: 100px"
-                                 alt="" />
+                            <img src="~/Content/img/avatar.jpg" class="img-fluid rounded" style="width: 100px; height: 100px" alt="" />
                         </div>
                         <div class="ms-4 d-block">
-                            <h4 class="text-dark">Kim Ji Won</h4>
+                            <h4 class="text-dark">Huỳnhh Công Tiến</h4>
                             <p class="m-0 pb-3">Client</p>
                             <div class="d-flex pe-5">
                                 <i class="fas fa-star text-primary"></i>
@@ -771,8 +767,7 @@
                     </div>
                     <div class="d-flex align-items-center flex-nowrap">
                         <div class="bg-secondary rounded">
-                            <img src="img/avatar.jpg" class="img-fluid rounded" style="width: 100px; height: 100px"
-                                 alt="" />
+                            <img src="~/Content/img/avatar.jpg" class="img-fluid rounded" style="width: 100px; height: 100px" alt="" />
                         </div>
                         <div class="ms-4 d-block">
                             <h4 class="text-dark">Đặng Ngọc Tài</h4>
@@ -800,11 +795,10 @@
                     </div>
                     <div class="d-flex align-items-center flex-nowrap">
                         <div class="bg-secondary rounded">
-                            <img src="img/avatar.jpg" class="img-fluid rounded" style="width: 100px; height: 100px"
-                                 alt="" />
+                            <img src="~/Content/img/avatar.jpg" class="img-fluid rounded" style="width: 100px; height: 100px" alt="" />
                         </div>
                         <div class="ms-4 d-block">
-                            <h4 class="text-dark">Võ Thái Bình</h4>
+                            <h4 class="text-dark">Cao Đức Nghĩa</h4>
                             <p class="m-0 pb-3">Client</p>
                             <div class="d-flex pe-5">
                                 <i class="fas fa-star text-primary"></i>
