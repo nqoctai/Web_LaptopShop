@@ -345,9 +345,12 @@ namespace Web_Laptopshop.Areas.QuanLy.Controllers
             SanPham sp = db.SanPhams.FirstOrDefault(x=>x.Id == long.Parse(c["ID"]));
             List<HinhAnhSanPham> listHA = sp.HinhAnhSanPhams.ToList();
             List<MoTaSanPham> listMota = sp.MoTaSanPhams.ToList();
+            List<BaoHanh> listBaoHanh = sp.BaoHanhs.ToList();
+            db.BaoHanhs.DeleteAllOnSubmit(listBaoHanh);
             db.MoTaSanPhams.DeleteAllOnSubmit(listMota);
             db.HinhAnhSanPhams.DeleteAllOnSubmit(listHA);
             db.SanPhams.DeleteOnSubmit(sp);
+            
             db.SubmitChanges();
             return RedirectToAction("Index");
         }

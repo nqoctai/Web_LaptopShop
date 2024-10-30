@@ -16,14 +16,14 @@ namespace Web_Laptopshop.Controllers
         DBConnectDataContext db = new DBConnectDataContext();
         public ActionResult Index()
         {
-
-            var danhSachSanPham = db.SanPhams
+            List<SanPham> list = db.SanPhams.Take(8).ToList();
+            var danhSachSanPham = list
                  .Select(sp => new SanPhamVM
                   {
                     SanPham = sp,
                     HinhAnhDaiDien = sp.HinhDaiDien
                     }).ToList();
-            List<SanPham> list = db.SanPhams.ToList();
+            
             //HinhAnhSanPham ha = list.FirstOrDefault().HinhAnhSanPhams.FirstOrDefault();
             //ViewBag.ha = ha.HinhAnhUrl;
            
