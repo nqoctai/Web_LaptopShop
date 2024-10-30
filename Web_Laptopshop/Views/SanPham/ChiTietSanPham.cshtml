@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="container py-5">
     <div class="row g-4 mb-5">
         <div>
@@ -115,6 +116,9 @@
                     <p class="mb-4">
                         @Model.SanPham.TieuDe
                     </p>
+                    <p class="fw-bold mb-3" style="font-size: 20px; color: red">
+                        @Model.SanPham.Gia.ToString("C0", new CultureInfo("vi-VN"))
+                    </p>
 
                     <div class="input-group quantity mb-4" style="width: 100px;">
                         <div class="input-group-btn">
@@ -136,7 +140,7 @@
                            value="1" />
                     <a class="btn btn-primary" href="/Home/ThemMatHang/?msp=@Model.SanPham.Id">
                         <i class="fa fa-shopping-bag me-2 text-primary"></i>
-                        Add to cart
+                        Thêm vào giỏ hàng
                     </a>
                     <!-- </form> -->
 
@@ -160,7 +164,7 @@
                         <div class="tab-pane active" id="nav-about" role="tabpanel"
                              aria-labelledby="nav-about-tab">
                             <div class="mb-3 p-4 bg-light rounded shadow-sm">
-                                <h5 class="fw-bold text-primary">ASUS TUF Gaming F15 FX506HF HN017W</h5>
+                                <h5 class="fw-bold text-primary">@Model.SanPham.TenSanPham</h5>
                                 <p class="text-muted" style="font-size: 1.1em;">
                                     @foreach (MoTaSanPham mt in ViewBag.ListMoTa)
                                     {
